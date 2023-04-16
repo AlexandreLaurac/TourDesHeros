@@ -1,0 +1,14 @@
+<h1> Héros du jeu </h1>
+<ul class="heroes">
+    <li *ngFor="let heros of lesHeros">
+        <a routerLink="/detail/{{heros.id}}">
+            <span class="badge"> {{heros.id}} </span>
+            {{heros.name}}
+            <img src="{{heros.icone}}" alt=""/>
+        </a>
+    </li>
+</ul>
+<button type="button">
+    <a routerLink="/editionHeros/0"> Créer un héros </a>
+</button>
+

@@ -1,0 +1,28 @@
+<div id="detailHeros" *ngIf="heros">
+    <h1> {{ heros.name | titlecase }} </h1>
+    <img src="{{heros.image}}" alt="Image"/>
+<!-- -->
+    <div id="description"> {{ heros.description }} </div>
+    <div id="partiePoints">
+        <div id="conteneurTextes">
+            <div> <span> Points de vie : </span> </div>
+            <div> <span> Points d'attaque : </span> </div>
+            <div> <span> Points d'esquive : </span> </div>
+            <div> <span> Points de dégâts : </span> </div>
+        </div>
+        <div id="conteneurValeurs">
+            <div> {{ heros.points }} </div>
+            <div> {{ heros.attaque }} </div>
+            <div> {{ heros.esquive }} </div>
+            <div> {{ heros.degats }} </div>
+        </div>
+    </div>
+    <div *ngIf="!isHerosValide()">
+        <div id="invalide"> Ce héros n'est pas conforme ! <br> Editez ses caractéristiques dans la page d'édition </div>
+    </div>
+    <div>
+        <button type="button" (click)="goBack()"> Retour </button>
+        <a routerLink="/editionHeros/{{heros.id}}"> Editer le héros </a> <!-- STYLE A REVOIR ... -->
+    </div>
+</div>
+

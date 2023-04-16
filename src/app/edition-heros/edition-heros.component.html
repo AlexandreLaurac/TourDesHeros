@@ -1,0 +1,28 @@
+<div *ngIf="heros">
+    <h2> Edition de {{ heros.name | titlecase }} </h2>
+    <div>
+        <label for="nom-heros"> Nom du héros </label>
+        <input id="nom-heros" [(ngModel)]="heros.name" placeholder="nom">
+    </div>
+    <div>
+        <label for="attaque-heros"> Points d'attaque </label>
+        <input id="attaque-heros" type=number [(ngModel)]="heros.attaque" placeholder="points d'attaque">
+    </div>
+    <div>
+        <label for="esquive-heros"> Points d'esquive </label>
+        <input id="esquive-heros" type=number [(ngModel)]="heros.esquive" placeholder="points d'esquive">
+    </div>
+    <div>
+        <label for="degats-heros"> Points de dégâts </label>
+        <input id="degats-heros" type=number [(ngModel)]="heros.degats" placeholder="points de dégâts">
+    </div>
+    <div>
+        <label for="points-heros"> Points de vie </label>
+        <input id="points-heros" type=number [(ngModel)]="heros.points" placeholder="points de vie">
+    </div>
+    <div *ngIf="!isHerosValide()">
+        <div id="messageHerosInvalide"> Ce héros n'est pas conforme ! <br> Donnez-lui les bonnes caractéristiques </div>
+    </div>
+    <button type="button" (click)="sauvegarde()"> Sauvegarde </button>
+    <button type="button" (click)="retour()"> Retour </button>
+</div>
