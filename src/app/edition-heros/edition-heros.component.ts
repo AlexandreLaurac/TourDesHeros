@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core' ;
 
-import  { HerosId } from "../heros" ;
+import { Heros, HerosId } from "../heros" ;
 import { HerosService } from "../heros.service";
 
 import { ActivatedRoute } from "@angular/router";
@@ -13,9 +13,9 @@ import { Location } from '@angular/common' ;
 })
 export class EditionHerosComponent implements OnInit {
 
+    herosInitial : HerosId | undefined ;
     heros : HerosId | undefined ;
     creation = false ;
-    sauve = false ;
 
     constructor(
         private route : ActivatedRoute,
@@ -28,6 +28,8 @@ export class EditionHerosComponent implements OnInit {
     }
 
     setHeros() : void {
+
+        // Récupération de l'id de la query string
         const id = Number(this.route.snapshot.paramMap.get('id')) ;
 
         // Mode création d'un héros
@@ -45,16 +47,32 @@ export class EditionHerosComponent implements OnInit {
                 image:"",
                 icone:""
             } ;
+            this.copieHerosInitial()
         }
 
         // Mode mise à jour d'un héros
         else {
-          this.herosService.getHeros(id)
-              .subscribe(heros => this.heros = heros)
+            this.herosService.getHeros(id)
+                .subscribe(heros => {
+                    this.heros = heros ;
+                    this.copieHerosInitial() ;
+                })
         }
     }
 
-    isHerosValide() : boolean {
+    copieHerosInitial() : void {
+        this.herosInitial = JSON.parse(JSON.stringify(this.heros)) ;
+    }
+
+    isHerosModifie() : boolean {
+        return JSON.stringify(this.herosInitial) !== JSON.stringify(this.heros) ;
+    }
+
+    isNomHerosVide() {
+        return this.heros === undefined || this.heros.name.length === 0 ;
+    }
+
+    arePointsValides() : boolean {
         return this.heros != undefined
             && (this.heros.points + this.heros.attaque + this.heros.degats + this.heros.esquive == 40)
             && (this.heros.points >= 1 && this.heros.attaque >= 1 && this.heros.degats >= 1 && this.heros.esquive >= 1) ;
@@ -63,34 +81,44 @@ export class EditionHerosComponent implements OnInit {
     sauvegarde() : void {
         if (this.heros != undefined) {
 
-            // Le héros n'est pas valide, on empêche la sauvegarde
-            if (!this.isHerosValide()) {
+            // On est en mode édition et le héros n'a pas été modifié : on quitte la page sans enregistrer
+            if (!this.creation && !this.isHerosModifie()) {
+                console.log ("je suis passé par ici - mode maj et héros non modifié")
+                this.retourPagePrecedente() ;
+                return ;
+            }
+
+            // Le héros a un nom vide - on empêche la sauvegarde et on avertit le joueur
+            if (this.isNomHerosVide()) {
+                console.log ("je suis passé par ici - héros modifié avec nom vide")
+                alert ("Vous ne pouvez pas sauvegarder un personnage dont le nom est vide - donnez-lui un nom") ;
+            }
+
+            // Le héros a des caractéristiques de points incorrectes - idem
+            else if (!this.arePointsValides()) {
+                console.log ("je suis passé par ici - héros modifié, nom non vide mais points invalides")
                 alert ("Le héros n'est pas conforme, vous ne pouvez pas le sauvegarder") ;
             }
 
-            // Le héros est valide, on l'enregistre dans la base (création ou mise à jour)
+            // Le héros a un nom non vide et a des points valides, on l'enregistre dans la base (création ou mise à jour)
             else {
-                // Mode création
+
+                // Mode création - création du héros dans la base
                 if (this.creation) {
-                    // Création du héros dans la base
+                    console.log ("je suis passé par ici - mode maj, héros modifié, tout bon, on enreg")
                     this.herosService.createHeros(this.heros).then(
-                        () => {
-                            this.sauve = true ;
-                            this.retour() ;
-                        },
-                        () => { alert("le personnage n'a pas pu être enregistré dans la base, recommencez") }
+                        () => this.retourPagePrecedente(),
+                        () => { alert("Le personnage n'a pas pu être créé, recommencez") }
                     ) ;
                 }
-                // Mode mise à jour
+
+                // Mode mise à jour - mise à jour du héros dans la base
                 else {
-                    // Mise à jour du héros dans la base
+                    console.log ("je suis passé par ici - mode création, héros modifié, tout bon, on enreg")
                     this.herosService.updateHeros(this.heros).then(
-                        () => {
-                            this.sauve = true ;
-                            this.retour()
-                        },
-                        () => { console.log("mise à jour du héros impossible") }
-                    );
+                        () => this.retourPagePrecedente(),
+                        () => { console.log("Le héros n'a pas pu être mis à jour, recommencez") }
+                    ) ;
                 }
             }
         }
@@ -98,19 +126,13 @@ export class EditionHerosComponent implements OnInit {
 
     retour() : void {
 
-        //////////////////////////////////////////////////////////////////////////////////////////
-        ///////////// PROBLEME : ON PEUT PARTIR MEME SI LE HEROS N'EST PAS VALIDE !!! ////////////
-        //////////////////////////////////////////////////////////////////////////////////////////
-
-        // De même, si on n'a rien modifié, on nous demande si on veut la quitter
-
-        // Le personnage n'est pas sauvegardé, affichage d'une dialog avec demande de confirmation
-        if (!this.sauve) {
-            if (!window.confirm("Vous n'avez pas sauvegardé votre personnage, voulez-vous vraiment quitter la page ?")) {
-                return ;
-            }
+      // Le personnage n'a pas été modifié ou il l'a été et on demande confirmation pour quitter la page
+        if (!this.isHerosModifie() || window.confirm("Vous n'avez pas sauvegardé votre personnage, voulez-vous vraiment quitter la page ?")) {
+            this.retourPagePrecedente() ;
         }
-        // Le personnage a été sauvegardé ou confirmation de départ de la page
+    }
+
+    retourPagePrecedente() : void {
         this.location.back() ;
     }
 }

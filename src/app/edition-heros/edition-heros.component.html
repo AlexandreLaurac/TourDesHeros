@@ -1,5 +1,5 @@
 <div *ngIf="heros">
-    <h2> Edition de {{ heros.name | titlecase }} </h2>
+    <h2> Edition de {{ heros.name }} </h2>
     <div>
         <label for="nom-heros"> Nom du héros </label>
         <input id="nom-heros" [(ngModel)]="heros.name" placeholder="nom">
@@ -20,7 +20,7 @@
         <label for="points-heros"> Points de vie </label>
         <input id="points-heros" type=number [(ngModel)]="heros.points" placeholder="points de vie">
     </div>
-    <div *ngIf="!isHerosValide()">
+    <div *ngIf="!arePointsValides()">
         <div id="messageHerosInvalide"> Ce héros n'est pas conforme ! <br> Donnez-lui les bonnes caractéristiques </div>
     </div>
     <button type="button" (click)="sauvegarde()"> Sauvegarde </button>
