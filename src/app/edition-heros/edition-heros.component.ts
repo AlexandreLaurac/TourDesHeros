@@ -39,7 +39,8 @@ export class EditionHerosComponent implements OnInit {
             this.heros = {
                 id:100,
                 name:"test",
-                description:"test",
+                original:false,
+                description:"",
                 points:0,
                 attaque:0,
                 esquive:0,
@@ -83,20 +84,17 @@ export class EditionHerosComponent implements OnInit {
 
             // On est en mode édition et le héros n'a pas été modifié : on quitte la page sans enregistrer
             if (!this.creation && !this.isHerosModifie()) {
-                console.log ("je suis passé par ici - mode maj et héros non modifié")
                 this.retourPagePrecedente() ;
                 return ;
             }
 
             // Le héros a un nom vide - on empêche la sauvegarde et on avertit le joueur
             if (this.isNomHerosVide()) {
-                console.log ("je suis passé par ici - héros modifié avec nom vide")
                 alert ("Vous ne pouvez pas sauvegarder un personnage dont le nom est vide - donnez-lui un nom") ;
             }
 
             // Le héros a des caractéristiques de points incorrectes - idem
             else if (!this.arePointsValides()) {
-                console.log ("je suis passé par ici - héros modifié, nom non vide mais points invalides")
                 alert ("Le héros n'est pas conforme, vous ne pouvez pas le sauvegarder") ;
             }
 
@@ -105,7 +103,6 @@ export class EditionHerosComponent implements OnInit {
 
                 // Mode création - création du héros dans la base
                 if (this.creation) {
-                    console.log ("je suis passé par ici - mode maj, héros modifié, tout bon, on enreg")
                     this.herosService.createHeros(this.heros).then(
                         () => this.retourPagePrecedente(),
                         () => { alert("Le personnage n'a pas pu être créé, recommencez") }
@@ -114,7 +111,6 @@ export class EditionHerosComponent implements OnInit {
 
                 // Mode mise à jour - mise à jour du héros dans la base
                 else {
-                    console.log ("je suis passé par ici - mode création, héros modifié, tout bon, on enreg")
                     this.herosService.updateHeros(this.heros).then(
                         () => this.retourPagePrecedente(),
                         () => { console.log("Le héros n'a pas pu être mis à jour, recommencez") }
@@ -125,8 +121,7 @@ export class EditionHerosComponent implements OnInit {
     }
 
     retour() : void {
-
-      // Le personnage n'a pas été modifié ou il l'a été et on demande confirmation pour quitter la page
+        // Le personnage n'a pas été modifié ou il l'a été et on demande confirmation pour quitter la page
         if (!this.isHerosModifie() || window.confirm("Vous n'avez pas sauvegardé votre personnage, voulez-vous vraiment quitter la page ?")) {
             this.retourPagePrecedente() ;
         }

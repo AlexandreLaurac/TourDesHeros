@@ -48,6 +48,7 @@ export class HerosService {
         let documentDeHeros = this.afs.collection<Heros>(HerosService.url).doc(herosId.id.toString()) ;
         let heros : Heros = {
             name:herosId.name,
+            original:herosId.original,
             description:herosId.description,
             image:herosId.image,
             icone:herosId.icone,
@@ -63,6 +64,7 @@ export class HerosService {
         let documentDeHeros = this.afs.collection<Heros>(HerosService.url).doc(herosId.id.toString()) ;
         let heros : Heros = {
             name:herosId.name,
+            original:herosId.original,
             description:herosId.description,
             image:herosId.image,
             icone:herosId.icone,

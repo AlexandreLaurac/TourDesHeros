@@ -1,28 +1,58 @@
-<div *ngIf="heros">
-    <h2> Edition de {{ heros.name }} </h2>
-    <div>
-        <label for="nom-heros"> Nom du héros </label>
-        <input id="nom-heros" [(ngModel)]="heros.name" placeholder="nom">
+<div id="editionHeros" *ngIf="heros">
+
+    <!-- Partie titre -->
+    <div id="partieTitre">
+        <!-- Création d'un héros (on peut forcément modifier son nom) -->
+        <h1 *ngIf="creation"> Création de </h1>
+        <input *ngIf="creation" [(ngModel)]="heros.name" placeholder="nom">
+        <!-- Edition d'un héros précédemment créé (on peut modifier son nom) -->
+        <h1 *ngIf="!creation && !heros.original"> Edition de </h1>
+        <input *ngIf="!creation && !heros.original" [(ngModel)]="heros.name" placeholder="nom">
+        <!-- Edition d'un héros original (on ne peut pas modifier son nom) -->
+        <h1 *ngIf="!creation && heros.original"> Edition de {{ heros.name }} </h1>
     </div>
+
+    <!-- Partie image -->
     <div>
-        <label for="attaque-heros"> Points d'attaque </label>
-        <input id="attaque-heros" type=number [(ngModel)]="heros.attaque" placeholder="points d'attaque">
+        <!-- Le héros a une image -->
+        <div *ngIf="heros.image">
+            <img src="{{heros.image}}" alt=""/>
+        </div>
+        <!-- Le héros n'a pas d'image -->
+        <div *ngIf="!heros.image">
+            <div id="sansImage"> <p> Chargez une image </p> </div>
+        </div>
     </div>
+
+    <!-- Partie description -->
     <div>
-        <label for="esquive-heros"> Points d'esquive </label>
-        <input id="esquive-heros" type=number [(ngModel)]="heros.esquive" placeholder="points d'esquive">
+        <!-- Création d'un héros (on peut forcément modifier sa description) -->
+        <textarea *ngIf="creation" [(ngModel)]="heros.description"> </textarea>
+        <!-- Edition d'un héros précédemment créé (on peut modifier son nom) -->
+        <textarea *ngIf="!creation && !heros.original" [(ngModel)]="heros.description"> </textarea>
+        <!-- Edition d'un héros original (on ne peut pas modifier sa description) -->
+        <div *ngIf="!creation && heros.original" id="description"> {{ heros.description }} </div>
     </div>
-    <div>
-        <label for="degats-heros"> Points de dégâts </label>
-        <input id="degats-heros" type=number [(ngModel)]="heros.degats" placeholder="points de dégâts">
-    </div>
-    <div>
-        <label for="points-heros"> Points de vie </label>
-        <input id="points-heros" type=number [(ngModel)]="heros.points" placeholder="points de vie">
+
+    <div id="partiePoints">
+        <div id="conteneurTextes">
+            <div> <span> Points de vie </span> </div>
+            <div> <span> Points d'attaque </span> </div>
+            <div> <span> Points d'esquive </span> </div>
+            <div> <span> Points de dégâts </span> </div>
+        </div>
+        <div id="conteneurValeurs">
+            <input id="points-heros" type=number [(ngModel)]="heros.points" placeholder="points de vie" size="1">
+            <input id="attaque-heros" type=number [(ngModel)]="heros.attaque" placeholder="points d'attaque" size="1">
+            <input id="esquive-heros" type=number [(ngModel)]="heros.esquive" placeholder="points d'esquive" size="1">
+            <input id="degats-heros" type=number [(ngModel)]="heros.degats" placeholder="points de dégâts" size="1">
+        </div>
     </div>
     <div *ngIf="!arePointsValides()">
         <div id="messageHerosInvalide"> Ce héros n'est pas conforme ! <br> Donnez-lui les bonnes caractéristiques </div>
     </div>
-    <button type="button" (click)="sauvegarde()"> Sauvegarde </button>
-    <button type="button" (click)="retour()"> Retour </button>
+    <div>
+        <button type="button" (click)="sauvegarde()"> Sauvegarde </button>
+        <button type="button" (click)="retour()"> Retour </button>
+    </div>
 </div>

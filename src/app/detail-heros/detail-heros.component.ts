@@ -30,8 +30,6 @@ export class DetailHerosComponent implements OnInit {
         this.herosService.getHeros(id)
             .subscribe(heros => {
                 this.heros = heros ;
-                //this.heros.image = "assets/img/mario.png" ;
-                //this.heros.description = "Héros iconique de Nintendo, Super Mario présente encore, malgré son âge avancé, de belles performances. Son endurance et son enthousiasme à toute épreuve le rendent indépassable !"
             })
     }
 

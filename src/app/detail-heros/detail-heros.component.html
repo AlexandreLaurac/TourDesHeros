@@ -1,8 +1,32 @@
 <div id="detailHeros" *ngIf="heros">
-    <h1> {{ heros.name | titlecase }} </h1>
-    <img src="{{heros.image}}" alt="Image"/>
-<!-- -->
-    <div id="description"> {{ heros.description }} </div>
+    <h1> {{ heros.name }} </h1>
+
+    <!-- Partie image -->
+    <div>
+        <!-- Le héros a une image -->
+        <div *ngIf="heros.image">
+            <img src="{{heros.image}}" alt=""/>
+        </div>
+        <!-- Le héros n'a pas d'image -->
+        <div *ngIf="!heros.image">
+            <div id="sansImage">
+                <p> Ce personnage n'a pas d'image </p>
+                <p> Editez-le pour lui en donner une </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Partie description -->
+    <div>
+        <!-- Le héros a une description -->
+        <div *ngIf="heros.description" id="description"> {{ heros.description }} </div>
+        <!-- Le héros n'a pas de description -->
+        <div *ngIf="!heros.description" id="descriptionVide">
+            <p> Ce personnage n'a pas de description </p>
+            <p> Editez-le pour lui en donner une </p>
+        </div>
+    </div>
+
     <div id="partiePoints">
         <div id="conteneurTextes">
             <div> <span> Points de vie : </span> </div>
@@ -25,4 +49,5 @@
         <a routerLink="/editionHeros/{{heros.id}}"> Editer le héros </a> <!-- STYLE A REVOIR ... -->
     </div>
 </div>
+
 

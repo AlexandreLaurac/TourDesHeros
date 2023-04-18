@@ -14,13 +14,39 @@ img {
     width : 300px ;
 }
 
+#sansImage {
+    width : 300px ;
+    height : 207px ;
+    border : 1px solid #369 ;
+    border-radius : 6px ;
+    display : flex ;
+    flex-direction : column ;
+    justify-content : center ;
+    align-items : center ;
+    font-style: italic ;
+    color : #435960 ;
+}
+
 #description {
-    margin : 30px 70px 0 70px ; /* à voir */
+    margin : 30px 70px 0 70px ;
     font-size: 1.1em;
     text-align: justify;
     font-family : Helvetica, sans-serif ;
 }
 
+#descriptionVide {
+    margin : 30px 70px 0 70px ;
+    display : flex ;
+    flex-direction : column ;
+    justify-content : start ;
+    align-items : center ;
+    font-style: italic ;
+    color : #435960 ;
+}
+
+p {
+    margin : 0 ;
+}
 span {
     color : #435960 ;
     font-weight : bold ;
