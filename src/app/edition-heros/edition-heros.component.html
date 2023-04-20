@@ -4,10 +4,10 @@
     <div id="partieTitre">
         <!-- Création d'un héros (on peut forcément modifier son nom) -->
         <h1 *ngIf="creation"> Création de </h1>
-        <input *ngIf="creation" [(ngModel)]="heros.name" placeholder="nom">
+        <input *ngIf="creation" [(ngModel)]="heros.name" placeholder="donnez un nom">
         <!-- Edition d'un héros précédemment créé (on peut modifier son nom) -->
         <h1 *ngIf="!creation && !heros.original"> Edition de </h1>
-        <input *ngIf="!creation && !heros.original" [(ngModel)]="heros.name" placeholder="nom">
+        <input *ngIf="!creation && !heros.original" [(ngModel)]="heros.name" placeholder="donnez un nom">
         <!-- Edition d'un héros original (on ne peut pas modifier son nom) -->
         <h1 *ngIf="!creation && heros.original"> Edition de {{ heros.name }} </h1>
     </div>
@@ -25,15 +25,16 @@
     </div>
 
     <!-- Partie description -->
-    <div>
+    <div id="partieDescription">
         <!-- Création d'un héros (on peut forcément modifier sa description) -->
-        <textarea *ngIf="creation" [(ngModel)]="heros.description"> </textarea>
+        <textarea *ngIf="creation" [(ngModel)]="heros.description" cols="35" rows="4" placeholder="Donnez une description à votre héros (facultatif)"> </textarea>
         <!-- Edition d'un héros précédemment créé (on peut modifier son nom) -->
-        <textarea *ngIf="!creation && !heros.original" [(ngModel)]="heros.description"> </textarea>
+        <textarea *ngIf="!creation && !heros.original" [(ngModel)]="heros.description" cols="35" rows="4" placeholder="Donnez une description à votre héros (facultatif)"> </textarea>
         <!-- Edition d'un héros original (on ne peut pas modifier sa description) -->
         <div *ngIf="!creation && heros.original" id="description"> {{ heros.description }} </div>
     </div>
 
+    <!-- Partie description -->
     <div id="partiePoints">
         <div id="conteneurTextes">
             <div> <span> Points de vie </span> </div>
@@ -51,8 +52,14 @@
     <div *ngIf="!arePointsValides()">
         <div id="messageHerosInvalide"> Ce héros n'est pas conforme ! <br> Donnez-lui les bonnes caractéristiques </div>
     </div>
-    <div>
-        <button type="button" (click)="sauvegarde()"> Sauvegarde </button>
+
+    <!-- Partie boutons -->
+    <div id="partieBoutons">
         <button type="button" (click)="retour()"> Retour </button>
+        <button type="button" (click)="sauvegarde()"> Sauvegarde </button>
+        <button *ngIf="!heros.original && !creation" type="button" (click)="suppression()"> Suppression </button>
+        <p *ngIf="heros.original"> Vous ne pouvez pas supprimer ce héros </p>
     </div>
+
+
 </div>

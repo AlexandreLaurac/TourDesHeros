@@ -27,6 +27,7 @@
         </div>
     </div>
 
+    <!-- Partie points -->
     <div id="partiePoints">
         <div id="conteneurTextes">
             <div> <span> Points de vie : </span> </div>
@@ -44,9 +45,11 @@
     <div *ngIf="!isHerosValide()">
         <div id="invalide"> Ce héros n'est pas conforme ! <br> Editez ses caractéristiques dans la page d'édition </div>
     </div>
+
+    <!-- Partie boutons -->
     <div>
         <button type="button" (click)="goBack()"> Retour </button>
-        <a routerLink="/editionHeros/{{heros.id}}"> Editer le héros </a> <!-- STYLE A REVOIR ... -->
+        <button> <a routerLink="/editionHeros/{{heros.id}}"> Editer le héros </a> </button>
     </div>
 </div>
 

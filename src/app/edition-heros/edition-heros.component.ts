@@ -127,6 +127,18 @@ export class EditionHerosComponent implements OnInit {
         }
     }
 
+    suppression() : void {
+        if (this.heros != undefined && !this.heros.original) {
+            if (confirm("Etes-vous sûr de vouloir supprimer ce héros ?")) {
+                this.location.historyGo(-2);  // On revient en arrière avant la suppression du héros car sinon la page commence à se mettre à jour et affiche des informations incohérentes
+                this.herosService.deleteHeros(this.heros.id).then(
+                    () => {},
+                    () => { console.log("Le héros n'a pas pu être supprimé, recommencez") }
+                );
+            }
+        }
+    }
+
     retourPagePrecedente() : void {
         this.location.back() ;
     }

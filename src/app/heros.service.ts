@@ -19,6 +19,22 @@ export class HerosService {
         //this.collectionDesHeros = this.afs.collection(HerosService.url) ;
     }
 
+    createHeros(herosId : HerosId) : Promise<void> {
+        let documentDeHeros = this.afs.collection<Heros>(HerosService.url).doc(herosId.id.toString()) ;
+        let heros : Heros = {
+            name:herosId.name,
+            original:herosId.original,
+            description:herosId.description,
+            image:herosId.image,
+            icone:herosId.icone,
+            points:herosId.points,
+            attaque:herosId.attaque,
+            esquive:herosId.esquive,
+            degats:herosId.degats
+        } ;
+        return documentDeHeros.set(heros) ;
+    }
+
     getLesHeros(): Observable<HerosId[]> {
         let collectionDesHeros = this.afs.collection<Heros>(HerosService.url) ;
         let lesHeros : Observable<HerosId[]> = collectionDesHeros.snapshotChanges().pipe(
@@ -44,22 +60,6 @@ export class HerosService {
         return heros ;
     }
 
-    createHeros(herosId : HerosId) : Promise<void> {
-        let documentDeHeros = this.afs.collection<Heros>(HerosService.url).doc(herosId.id.toString()) ;
-        let heros : Heros = {
-            name:herosId.name,
-            original:herosId.original,
-            description:herosId.description,
-            image:herosId.image,
-            icone:herosId.icone,
-            points:herosId.points,
-            attaque:herosId.attaque,
-            esquive:herosId.esquive,
-            degats:herosId.degats
-        } ;
-        return documentDeHeros.set(heros) ;
-    }
-
     updateHeros(herosId : HerosId) : Promise<void> {
         let documentDeHeros = this.afs.collection<Heros>(HerosService.url).doc(herosId.id.toString()) ;
         let heros : Heros = {
@@ -74,5 +74,10 @@ export class HerosService {
             degats:herosId.degats
         } ;
         return documentDeHeros.update(heros) ;
+    }
+
+    deleteHeros(id : number) : Promise<void> {
+        let documentDeHeros = this.afs.collection<Heros>(HerosService.url).doc(id.toString()) ;
+        return documentDeHeros.delete() ;
     }
 }
