@@ -1,0 +1,56 @@
+<div id="detailArme" *ngIf="arme">
+  <h1> {{ arme.name }} </h1>
+
+  <!-- Partie image -->
+  <div>
+    <!-- L'arme a une image -->
+    <div *ngIf="arme.image">
+      <img src="{{arme.image}}" alt=""/>
+    </div>
+    <!-- L'arme n'a pas d'image -->
+    <div *ngIf="!arme.image">
+      <div id="sansImage">
+        <p> Cette arme n'a pas d'image </p>
+        <p> Editez-la pour lui en donner une </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Partie description -->
+  <div>
+    <!-- L'arme a une description -->
+    <div *ngIf="arme.description" id="description"> {{ arme.description }} </div>
+    <!-- L'arme n'a pas de description -->
+    <div *ngIf="!arme.description" id="descriptionVide">
+      <p> Cette arme n'a pas de description </p>
+      <p> Editez-la pour lui en donner une </p>
+    </div>
+  </div>
+
+  <!-- Partie points -->
+  <div id="partiePoints">
+    <div id="conteneurTextes">
+      <div> <span> Points de vie : </span> </div>
+      <div> <span> Points d'attaque : </span> </div>
+      <div> <span> Points d'esquive : </span> </div>
+      <div> <span> Points de dégâts : </span> </div>
+    </div>
+    <div id="conteneurValeurs">
+      <div> {{ arme.points }} </div>
+      <div> {{ arme.attaque }} </div>
+      <div> {{ arme.esquive }} </div>
+      <div> {{ arme.degats }} </div>
+    </div>
+  </div>
+  <div *ngIf="!isArmeValide()">
+    <div id="invalide"> Cette arme n'est pas conforme ! <br> Editez ses caractéristiques dans la page d'édition </div>
+  </div>
+
+  <!-- Partie boutons -->
+  <div>
+    <button type="button" (click)="goBack()"> Retour </button>
+    <button> <a routerLink="/editionArme/{{arme.id}}"> Editer l'arme </a> </button>
+  </div>
+</div>
+
+

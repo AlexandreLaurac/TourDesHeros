@@ -4,7 +4,7 @@ import { Heros, HerosId } from "./heros" ;
 import { MessageService } from "./message.service" ;
 
 import { map, Observable } from "rxjs" ;
-import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/compat/firestore" ;
+import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore" ;
 
 @Injectable({
   providedIn: 'root'

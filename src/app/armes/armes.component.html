@@ -1,0 +1,17 @@
+<h1> Armes du jeu </h1>
+<ul class="armes">
+    <li *ngFor="let arme of armes">
+        <a routerLink="/detailArme/{{arme.id}}">
+            <span class="badge"> {{arme.id}} </span>
+            {{arme.name}}
+            <!--
+            <img src="{{arme.icone}}" alt=""/>
+            -->
+        </a>
+    </li>
+</ul>
+<!--
+<button>
+  <a routerLink="/editionHeros/0"> Créer un héros </a>
+</button>
+-->
