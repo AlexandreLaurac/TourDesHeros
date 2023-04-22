@@ -1,3 +1,5 @@
+import { Heros } from "./heros" ;
+
 export interface Arme {
     name : string ;
     originale : boolean ;
@@ -12,6 +14,10 @@ export interface Arme {
 
 export interface ArmeId extends Arme {
     id : number ;
+}
+
+export interface ArmeJeu extends Arme {
+    heros : Heros | undefined ;
 }
 
 export function armeIdToArme (armeId : ArmeId) : Arme {

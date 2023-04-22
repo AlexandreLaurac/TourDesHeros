@@ -1,4 +1,7 @@
 <h1> Héros du jeu </h1>
+
+<p id="messageIntroduction"> {{ messageIntroduction() }} </p>
+
 <ul class="heroes">
     <li *ngFor="let heros of lesHeros">
         <a routerLink="/detail/{{heros.id}}">
@@ -6,10 +9,10 @@
             {{heros.name}}
             <img src="data:image/png;base64, {{heros.icone}}" alt=""/>
         </a>
+        <span *ngIf="isCeHerosLeHerosChoisi(heros)" class="herosChoisi"> Héros choisi ! </span>
     </li>
 </ul>
 
 <button>
     <a routerLink="/editionHeros/0"> Créer un héros </a>
 </button>
-

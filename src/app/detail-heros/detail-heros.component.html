@@ -1,8 +1,10 @@
 <div id="detailHeros" *ngIf="heros">
+
     <h1> {{ heros.name }} </h1>
+    <span id="herosChoisi" *ngIf="isCeHerosLeHerosChoisi()"> Heros choisi ! </span>
 
     <!-- Partie image -->
-    <div>
+    <div id="partieImage">
         <!-- Le héros a une image -->
         <div *ngIf="heros.image">
             <img src="data:image/png;base64, {{heros.image}}" alt=""/>
@@ -17,7 +19,7 @@
     </div>
 
     <!-- Partie description -->
-    <div>
+    <div id="partieDescription">
         <!-- Le héros a une description -->
         <div *ngIf="heros.description" id="description"> {{ heros.description }} </div>
         <!-- Le héros n'a pas de description -->
@@ -47,10 +49,13 @@
     </div>
 
     <!-- Partie boutons -->
-    <div>
-        <button type="button" (click)="goBack()"> Retour </button>
-        <button> <a routerLink="/editionHeros/{{heros.id}}"> Editer le héros </a> </button>
+    <div id="partieBoutons">
+        <div id="partieBoutonsDuHaut">
+            <button type="button" (click)="retour()"> Retour </button>
+            <button> <a routerLink="/editionHeros/{{heros.id}}"> Editer le héros </a> </button>
+        </div>
+        <div id="partieBoutonDuBas">
+            <button type="button" (click)="choisirHeros()"> {{ texteBoutonChoixHeros() }} </button>
+        </div>
     </div>
 </div>
-
-
