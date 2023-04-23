@@ -4,10 +4,11 @@
         <a routerLink="/detail/{{heros.id}}">
             <span class="badge"> {{heros.id}} </span>
             {{heros.name}}
-            <img src="{{heros.icone}}" alt=""/>
+            <img src="data:image/png;base64, {{heros.icone}}" alt=""/>
         </a>
     </li>
 </ul>
+
 <button>
     <a routerLink="/editionHeros/0"> Créer un héros </a>
 </button>

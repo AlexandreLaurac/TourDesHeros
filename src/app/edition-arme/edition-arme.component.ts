@@ -24,7 +24,7 @@ export class EditionArmeComponent implements OnInit {
     ) {}
 
     ngOnInit() : void {
-      this.setArme() ;
+        this.setArme() ;
     }
 
     setArme() : void {

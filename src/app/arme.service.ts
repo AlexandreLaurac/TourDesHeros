@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core' ;
 
-import { Arme, ArmeId } from "./arme" ;
+import { Arme, ArmeId, armeIdToArme } from "./arme" ;
 import { MessageService } from "./message.service" ;
-import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {map, Observable} from "rxjs";
+import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { map, Observable } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -19,8 +19,7 @@ export class ArmeService {
 
     createArme (armeId : ArmeId) : Promise<void> {
         let documentArme = this.afs.collection<Arme>(ArmeService.url).doc(armeId.id.toString()) ;
-        let arme : Arme = armeId as Arme ;
-        return documentArme.set(arme) ;
+        return documentArme.set(armeIdToArme(armeId)) ;
     }
 
     getArmes() : Observable<ArmeId[]> {
@@ -50,8 +49,7 @@ export class ArmeService {
 
     updateArme (armeId : ArmeId) : Promise<void> {
         let documentArme = this.afs.collection<Arme>(ArmeService.url).doc(armeId.id.toString()) ;
-        let arme : Arme = armeId as Arme ;
-        return documentArme.update(arme) ;
+        return documentArme.update(armeIdToArme(armeId)) ;
     }
 
     deleteArme (id : number) : Promise<void> {

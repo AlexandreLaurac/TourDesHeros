@@ -5,7 +5,7 @@
     <div>
         <!-- Le héros a une image -->
         <div *ngIf="heros.image">
-            <img src="{{heros.image}}" alt=""/>
+            <img src="data:image/png;base64, {{heros.image}}" alt=""/>
         </div>
         <!-- Le héros n'a pas d'image -->
         <div *ngIf="!heros.image">

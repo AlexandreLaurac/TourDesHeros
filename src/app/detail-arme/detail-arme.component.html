@@ -5,7 +5,7 @@
     <div>
         <!-- L'arme a une image -->
         <div *ngIf="arme.image">
-            <img src="{{arme.image}}" alt=""/>
+            <img src="data:image/png;base64, {{arme.image}}" alt=""/>
         </div>
         <!-- L'arme n'a pas d'image -->
         <div *ngIf="!arme.image">

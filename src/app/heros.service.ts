@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core' ;
 
-import { Heros, HerosId } from "./heros" ;
+import { Heros, HerosId, herosIdToHeros } from "./heros" ;
 import { MessageService } from "./message.service" ;
 
 import { map, Observable } from "rxjs" ;
@@ -21,18 +21,7 @@ export class HerosService {
 
     createHeros(herosId : HerosId) : Promise<void> {
         let documentDeHeros = this.afs.collection<Heros>(HerosService.url).doc(herosId.id.toString()) ;
-        let heros : Heros = {
-            name:herosId.name,
-            original:herosId.original,
-            description:herosId.description,
-            image:herosId.image,
-            icone:herosId.icone,
-            points:herosId.points,
-            attaque:herosId.attaque,
-            esquive:herosId.esquive,
-            degats:herosId.degats
-        } ;
-        return documentDeHeros.set(heros) ;
+        return documentDeHeros.set(herosIdToHeros(herosId)) ;
     }
 
     getLesHeros(): Observable<HerosId[]> {
@@ -62,18 +51,7 @@ export class HerosService {
 
     updateHeros(herosId : HerosId) : Promise<void> {
         let documentDeHeros = this.afs.collection<Heros>(HerosService.url).doc(herosId.id.toString()) ;
-        let heros : Heros = {
-            name:herosId.name,
-            original:herosId.original,
-            description:herosId.description,
-            image:herosId.image,
-            icone:herosId.icone,
-            points:herosId.points,
-            attaque:herosId.attaque,
-            esquive:herosId.esquive,
-            degats:herosId.degats
-        } ;
-        return documentDeHeros.update(heros) ;
+        return documentDeHeros.update(herosIdToHeros(herosId)) ;
     }
 
     deleteHeros(id : number) : Promise<void> {

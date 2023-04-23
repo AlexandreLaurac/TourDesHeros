@@ -7,9 +7,9 @@ import { ActivatedRoute } from "@angular/router";
 import { Location } from '@angular/common' ;
 
 @Component({
-  selector: 'app-edition-heros',
-  templateUrl: './edition-heros.component.html',
-  styleUrls: ['./edition-heros.component.css']
+    selector: 'app-edition-heros',
+    templateUrl: './edition-heros.component.html',
+    styleUrls: ['./edition-heros.component.css']
 })
 export class EditionHerosComponent implements OnInit {
 
