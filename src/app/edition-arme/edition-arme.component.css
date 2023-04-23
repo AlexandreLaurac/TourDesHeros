@@ -1,0 +1,124 @@
+/* EditionArmeComponent's private CSS styles */
+
+#editionArme {
+    border : 2px solid #369 ; /* peru */
+    border-radius : 6px ;
+    display : flex ;
+    flex-direction : column ;
+    align-items : center ;
+    width : 30% ;
+    margin : 50px auto 0 auto ;
+}
+
+#partieTitre {
+    display : flex ;
+    flex-direction : row ;
+    align-items : center ;
+}
+
+#partieTitre input {
+    font-size : 32px ;
+    margin-left : 10px ;
+    height : 32px ;
+    width : 200px ;
+}
+
+#partieTitre input:placeholder-shown,
+#partieDescription textarea:placeholder-shown,
+#partieBoutons p {
+    font-size : 16px ;
+    font-style: italic ;
+    color : #435960 ;
+}
+
+img {
+    width : 200px ;
+}
+
+#sansImage {
+    width : 200px ;
+    height : 137px ;
+    border : 3px dashed black ;
+    border-radius : 6px ;
+    display : flex ;
+    justify-content : center ;
+    align-items : center ;
+    font-style: italic ;
+    color : #435960 ;
+}
+
+#description {
+    --marge : 70px ;
+    margin : 30px var(--marge) 0 var(--marge) ;
+    font-size: 1.1em;
+    text-align: justify;
+    font-family : Helvetica, sans-serif ;
+}
+
+#partieDescription textarea {
+    --marge : 70px ;
+    margin : 25px var(--marge) 0 var(--marge) ;
+    font-size: 1.1em;
+    font-family : Helvetica, sans-serif ;
+}
+
+#partiePoints {
+    margin : 20px 20px 10px 10px ;
+    display : flex ;
+    font-size : 1.2em ;
+}
+
+#conteneurTextes {
+    display : flex ;
+    flex-direction : column ;
+    align-items : end ;
+}
+
+#conteneurValeurs {
+    display : flex ;
+    flex-direction : column ;
+    align-items : start ;
+    margin-left : 10px ;
+}
+
+label, span {
+    color : #435960 ;
+    font-weight : bold ;
+}
+
+input {
+    font-size : 1em ;
+    padding : 0 ;
+}
+
+#partieBoutons {
+    margin : 10px 0 ;
+}
+
+#partieBoutons p {
+    margin-top : 10px ;
+}
+
+button {
+    padding : 1rem 0 ;
+    width : 150px ;
+    border-radius : 4px ;
+    background-color : #eee ;
+    font-size : 1rem ;
+}
+
+button:hover, a:hover {
+    background-color: #cfd8dc;
+}
+
+button:disabled {
+    background-color : #eee ;
+    color : #ccc ;
+    cursor : auto ;
+}
+
+#messageArmeInvalide {
+    color : red ;
+    font-weight : bold ;
+    padding-bottom : 1em ;
+}

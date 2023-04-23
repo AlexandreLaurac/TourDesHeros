@@ -1,0 +1,64 @@
+<div id="editionArme" *ngIf="arme">
+
+    <!-- Partie titre -->
+    <div id="partieTitre">
+        <!-- Création d'une arme (on peut forcément modifier son nom) -->
+        <h1 *ngIf="creation"> Création de </h1>
+        <input *ngIf="creation" [(ngModel)]="arme.name" placeholder="donnez un nom">
+        <!-- Edition d'une arme précédemment créée (on peut modifier son nom) -->
+        <h1 *ngIf="!creation && !arme.originale"> Edition de </h1>
+        <input *ngIf="!creation && !arme.originale" [(ngModel)]="arme.name" placeholder="donnez un nom">
+        <!-- Edition d'une arme originale (on ne peut pas modifier son nom) -->
+        <h1 *ngIf="!creation && arme.originale"> Edition de {{ arme.name }} </h1>
+    </div>
+
+    <!-- Partie image -->
+    <div>
+        <!-- L'arme a une image -->
+        <div *ngIf="arme.image">
+            <img src="{{arme.image}}" alt=""/>
+        </div>
+        <!-- L'arme n'a pas d'image -->
+        <div *ngIf="!arme.image">
+            <div id="sansImage"> <p> Chargez une image </p> </div>
+        </div>
+    </div>
+
+    <!-- Partie description -->
+    <div id="partieDescription">
+        <!-- Création d'une arme (on peut forcément modifier sa description) -->
+        <textarea *ngIf="creation" [(ngModel)]="arme.description" cols="35" rows="4" placeholder="Donnez une description à votre arme (facultatif)"> </textarea>
+        <!-- Edition d'une arme précédemment créée (on peut modifier son nom) -->
+        <textarea *ngIf="!creation && !arme.originale" [(ngModel)]="arme.description" cols="35" rows="4" placeholder="Donnez une description à votre arme (facultatif)"> </textarea>
+        <!-- Edition d'un héros original (on ne peut pas modifier sa description) -->
+        <div *ngIf="!creation && arme.originale" id="description"> {{ arme.description }} </div>
+    </div>
+
+    <!-- Partie description -->
+    <div id="partiePoints">
+        <div id="conteneurTextes">
+            <div> <span> Points de vie </span> </div>
+            <div> <span> Points d'attaque </span> </div>
+            <div> <span> Points d'esquive </span> </div>
+            <div> <span> Points de dégâts </span> </div>
+        </div>
+        <div id="conteneurValeurs">
+            <input id="points-heros" type=number [(ngModel)]="arme.points" placeholder="points de vie" size="1">
+            <input id="attaque-heros" type=number [(ngModel)]="arme.attaque" placeholder="points d'attaque" size="1">
+            <input id="esquive-heros" type=number [(ngModel)]="arme.esquive" placeholder="points d'esquive" size="1">
+            <input id="degats-heros" type=number [(ngModel)]="arme.degats" placeholder="points de dégâts" size="1">
+        </div>
+    </div>
+    <div *ngIf="!arePointsValides()">
+        <div id="messageArmeInvalide"> Cette arme n'est pas conforme ! <br> Donnez-lui les bonnes caractéristiques </div>
+    </div>
+
+    <!-- Partie boutons -->
+    <div id="partieBoutons">
+        <button type="button" (click)="retour()"> Retour </button>
+        <button type="button" (click)="sauvegarde()"> Sauvegarde </button>
+        <button *ngIf="!arme.originale && !creation" type="button" (click)="suppression()"> Suppression </button>
+        <p *ngIf="arme.originale"> Vous ne pouvez pas supprimer cette arme </p>
+    </div>
+
+</div>

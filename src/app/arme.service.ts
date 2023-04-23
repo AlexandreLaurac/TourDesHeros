@@ -19,17 +19,7 @@ export class ArmeService {
 
     createArme (armeId : ArmeId) : Promise<void> {
         let documentArme = this.afs.collection<Arme>(ArmeService.url).doc(armeId.id.toString()) ;
-        let arme : Arme = {
-            name:armeId.name,
-            original:armeId.original,
-            description:armeId.description,
-            image:armeId.image,
-            icone:armeId.icone,
-            points:armeId.points,
-            attaque:armeId.attaque,
-            esquive:armeId.esquive,
-            degats:armeId.degats
-        } ;
+        let arme : Arme = armeId as Arme ;
         return documentArme.set(arme) ;
     }
 
@@ -60,17 +50,7 @@ export class ArmeService {
 
     updateArme (armeId : ArmeId) : Promise<void> {
         let documentArme = this.afs.collection<Arme>(ArmeService.url).doc(armeId.id.toString()) ;
-        let arme : Arme = {
-            name:armeId.name,
-            original:armeId.original,
-            description:armeId.description,
-            image:armeId.image,
-            icone:armeId.icone,
-            points:armeId.points,
-            attaque:armeId.attaque,
-            esquive:armeId.esquive,
-            degats:armeId.degats
-        } ;
+        let arme : Arme = armeId as Arme ;
         return documentArme.update(arme) ;
     }
 

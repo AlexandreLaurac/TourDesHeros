@@ -1,6 +1,6 @@
 export interface Arme {
     name : string ;
-    original : boolean ;
+    originale : boolean ;
     description : string ;
     image : string ;
     icone : string ;

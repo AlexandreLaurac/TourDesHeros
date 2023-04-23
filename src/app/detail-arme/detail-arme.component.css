@@ -11,12 +11,12 @@
 }
 
 img {
-  width : 300px ;
+  width : 200px ;
 }
 
 #sansImage {
-  width : 300px ;
-  height : 207px ;
+  width : 200px ;
+  height : 137px ;
   border : 1px solid #369 ;
   border-radius : 6px ;
   display : flex ;
@@ -24,6 +24,7 @@ img {
   justify-content : center ;
   align-items : center ;
   font-style: italic ;
+  font-size: 0.8em ;
   color : #435960 ;
 }
 

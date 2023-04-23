@@ -32,12 +32,16 @@ export class DetailArmeComponent implements OnInit {
     }
 
     isArmeValide() : boolean {
-        return this.arme != undefined
-            && (this.arme.points + this.arme.attaque + this.arme.degats + this.arme.esquive == 10)
-            && (this.arme.points >= 1 && this.arme.attaque >= 1 && this.arme.degats >= 1 && this.arme.esquive >= 1) ;
+        return this.arme !== undefined
+            && (this.arme.points + this.arme.attaque + this.arme.degats + this.arme.esquive === 0)
+            && (this.isPointValide(this.arme.points) && this.isPointValide(this.arme.attaque) && this.isPointValide(this.arme.degats) && this.isPointValide(this.arme.esquive)) ;
+    }
+
+    isPointValide(point : number) : boolean {
+        return point >= -5 && point <= 5 ;
     }
 
     goBack() : void {
-        this.location.back() ;
+          this.location.back() ;
     }
 }
