@@ -46,7 +46,8 @@ export class EditionHerosComponent implements OnInit {
                 esquive:0,
                 degats:0,
                 image:"",
-                icone:""
+                icone:"",
+                idArme:undefined
             } ;
             this.copieHerosInitial()
         }

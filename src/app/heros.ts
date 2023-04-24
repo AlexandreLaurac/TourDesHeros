@@ -1,8 +1,8 @@
-import { Arme } from "./arme" ;
+//import { Arme } from "./arme" ;
 
 export interface Heros {
     name : string ;
-    original : boolean ;
+    original : boolean ;  // booléen indiquant si le héros est fourni par le site ou a été créé par l'utilisateur
     description : string ;
     image : string ;
     icone : string ;
@@ -10,14 +10,12 @@ export interface Heros {
     attaque : number ;
     esquive : number ;
     degats : number ;
+    idArme : number | undefined
 }
+
 
 export interface HerosId extends Heros {
     id : number ;
-}
-
-export interface HerosJeu extends HerosId {  // ou 'extends Heros', à voir
-    arme : Arme | undefined ;
 }
 
 export function herosIdToHeros (herosId : HerosId) : Heros {
@@ -30,6 +28,13 @@ export function herosIdToHeros (herosId : HerosId) : Heros {
         points:herosId.points,
         attaque:herosId.attaque,
         esquive:herosId.esquive,
-        degats:herosId.degats
+        degats:herosId.degats,
+        idArme:herosId.idArme
     } ;
 }
+
+/*
+export interface HerosJeu extends HerosId {  // ou 'extends Heros', à voir
+    arme : Arme | undefined ;
+}
+*/

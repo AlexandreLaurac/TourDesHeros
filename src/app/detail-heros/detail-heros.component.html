@@ -48,6 +48,17 @@
         <div id="invalide"> Ce héros n'est pas conforme ! <br> Editez ses caractéristiques dans la page d'édition </div>
     </div>
 
+    <!-- Partie arme associée au héros -->
+    <div id="partieArme">
+        <div> <span> Arme du héros : </span> </div>
+        <div id="reponseArmeExistante" *ngIf="arme">
+            {{ arme.name }}
+            <img src="data:image/png;base64, {{arme.image}}" alt=""/> </div>
+        <div id="reponseArmeInexistante" *ngIf="!arme">
+            Ce personnage n'a pas d'arme <br> Editez-le pour lui en donner une
+        </div>
+    </div>
+
     <!-- Partie boutons -->
     <div id="partieBoutons">
         <div id="partieBoutonsDuHaut">

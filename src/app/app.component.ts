@@ -1,6 +1,6 @@
 import { Component } from '@angular/core' ;
-import { HerosId, HerosJeu } from "./heros" ;
-import { ArmeId, ArmeJeu } from "./arme" ;
+import { HerosId } from "./heros" ;
+import { ArmeId } from "./arme" ;
 
 @Component({
     selector: 'app-root',

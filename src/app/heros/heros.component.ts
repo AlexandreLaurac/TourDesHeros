@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core' ;
 
-import { HerosId, HerosJeu } from "../heros" ;
+import { HerosId } from "../heros" ;
 import { HerosService } from "../heros.service" ;
 import { AppComponent } from "../app.component" ;
-import { ArmeId } from "../arme";
 
 @Component({
     selector: 'app-heros',
@@ -14,14 +13,12 @@ export class HerosComponent implements OnInit {
 
     lesHeros : HerosId[] = [] ;
     herosChoisi : HerosId | undefined ;
-    armeChoisie : ArmeId | undefined ;
 
     constructor (private herosService : HerosService) {}
 
     ngOnInit() : void {
         this.setLesHeros() ;
         this.herosChoisi = AppComponent.herosChoisi ;
-        this.armeChoisie = AppComponent.armeChoisie ;  // inutile si lien entre arme et heros
     }
 
     setLesHeros() : void {
@@ -30,12 +27,12 @@ export class HerosComponent implements OnInit {
     }
 
     messageIntroduction() : string {
-        let message = "" ;
+        let message ;
         if (this.herosChoisi == undefined) {
             message = "Vous n'avez pas encore choisi de héros. Faites-le en vous rendant dans la fiche d'un héros" ;
         }
-        else if (this.armeChoisie == undefined) {
-            message = "Vous avez choisi un héros mais vous ne lui avez pas encore attribué d'arme. Pour cela, rendez-vous dans la partie correspondante"
+        else {
+            message = "Vous avez choisi un héros, vous pouvez commencer la partie !"
         }
         return message ;
     }
