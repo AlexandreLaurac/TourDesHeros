@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 
-import { Arme, ArmeId } from "../arme" ;
+import { ArmeId } from "../arme" ;
 import { ArmeService } from "../arme.service";
 
 import { ActivatedRoute } from "@angular/router";
@@ -35,20 +35,25 @@ export class EditionArmeComponent implements OnInit {
         // Mode création d'une arme
         if (id === 0) {
             this.creation = true ;
-            // Ici récupérer l'id le plus haut de la liste pour l'incrémenter de 1 et l'attribuer à l'arme en création
-            this.arme = {
-                id:100,
-                name:"",
-                originale:false,
-                description:"",
-                points:0,
-                attaque:0,
-                esquive:0,
-                degats:0,
-                image:"",
-                icone:""
-            } ;
-            this.copieArmeInitiale()
+            // On récupère l'id le plus haut de la liste pour l'incrémenter de 1 et l'attribuer à l'arme en création
+            this.armeService.getArmes()
+                .subscribe(armes => {
+                    let tableauIdArmes = armes.map(arme => arme.id) ;
+                    let idMaxArmes = Math.max(...tableauIdArmes) ;
+                    this.arme = {
+                        id: idMaxArmes+1,
+                        name: "",
+                        originale: false,
+                        description: "",
+                        points: 0,
+                        attaque: 0,
+                        esquive: 0,
+                        degats: 0,
+                        image: "",
+                        icone: ""
+                      } ;
+                      this.copieArmeInitiale() ;
+                })
         }
 
         // Mode mise à jour d'un héros

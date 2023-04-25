@@ -44,10 +44,10 @@ export class EditionHerosComponent implements OnInit {
             // On récupère l'id le plus haut de la liste pour l'incrémenter de 1 et l'attribuer au héros en création
             this.herosService.getLesHeros()
                 .subscribe(lesHeros => {
-                    let tableauId = lesHeros.map(herosId => herosId.id) ;
-                    let idMax = Math.max(...tableauId) ;
+                    let tableauIdHeros = lesHeros.map(herosId => herosId.id) ;
+                    let idMaxHeros = Math.max(...tableauIdHeros) ;
                     this.heros = {
-                        id:idMax+1,
+                        id:idMaxHeros+1,
                         name: "",
                         original: false,
                         description: "",
@@ -59,7 +59,6 @@ export class EditionHerosComponent implements OnInit {
                         icone: "",
                         idArme:null
                       } ;
-                    console.log(this.heros) ;
                     this.copieHerosInitial() ;
                 }) ;
         }
@@ -97,14 +96,19 @@ export class EditionHerosComponent implements OnInit {
             && (this.heros.points >= 1 && this.heros.attaque >= 1 && this.heros.degats >= 1 && this.heros.esquive >= 1) ;
     }
 
-    isArmeDuHeros(arme : ArmeId) : boolean {
-        return this.heros?.idArme !== null && this.heros?.idArme === arme.id ;
+    isArmeDuHeros(armeId : number | null) : boolean {
+        return this.heros?.idArme === armeId ;
     }
 
     setArmeDuHeros(event : Event) {
         if (this.heros !== undefined && this.armes !== undefined) {
             let nameOfSelectedWeapon = (event.target as HTMLSelectElement).value ;
-            this.heros.idArme = this.armes.filter(arme => arme.name == nameOfSelectedWeapon)[0].id ;
+            if (nameOfSelectedWeapon.trim() === "-- Sans arme --") {
+                this.heros.idArme = null ;
+            }
+            else {
+                this.heros.idArme = this.armes.filter(arme => arme.name == nameOfSelectedWeapon)[0].id ;
+            }
         }
     }
 
