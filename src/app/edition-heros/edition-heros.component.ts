@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core' ;
 
-import { Heros, HerosId } from "../heros" ;
+import { HerosId } from "../heros" ;
+import { ArmeId } from "../arme";
+
 import { HerosService } from "../heros.service";
+import { ArmeService } from "../arme.service";
 
 import { ActivatedRoute } from "@angular/router";
 import { Location } from '@angular/common' ;
@@ -15,16 +18,19 @@ export class EditionHerosComponent implements OnInit {
 
     herosInitial : HerosId | undefined ;
     heros : HerosId | undefined ;
+    armes : ArmeId[] | undefined ;
     creation = false ;
 
     constructor(
         private route : ActivatedRoute,
         private herosService : HerosService,
+        private armeService : ArmeService,
         private location : Location
     ) {}
 
     ngOnInit() : void {
         this.setHeros() ;
+        this.setArmes() ;
     }
 
     setHeros() : void {
@@ -35,21 +41,27 @@ export class EditionHerosComponent implements OnInit {
         // Mode création d'un héros
         if (id === 0) {
             this.creation = true ;
-            // Ici récupérer l'id le plus haut de la liste pour l'incrémenter de 1 et l'attribuer au héros en création
-            this.heros = {
-                id:100,
-                name:"test",
-                original:false,
-                description:"",
-                points:0,
-                attaque:0,
-                esquive:0,
-                degats:0,
-                image:"",
-                icone:"",
-                idArme:undefined
-            } ;
-            this.copieHerosInitial()
+            // On récupère l'id le plus haut de la liste pour l'incrémenter de 1 et l'attribuer au héros en création
+            this.herosService.getLesHeros()
+                .subscribe(lesHeros => {
+                    let tableauId = lesHeros.map(herosId => herosId.id) ;
+                    let idMax = Math.max(...tableauId) ;
+                    this.heros = {
+                        id:idMax+1,
+                        name: "",
+                        original: false,
+                        description: "",
+                        points: 0,
+                        attaque: 0,
+                        esquive: 0,
+                        degats: 0,
+                        image: "",
+                        icone: "",
+                        idArme:null
+                      } ;
+                    console.log(this.heros) ;
+                    this.copieHerosInitial() ;
+                }) ;
         }
 
         // Mode mise à jour d'un héros
@@ -66,6 +78,11 @@ export class EditionHerosComponent implements OnInit {
         this.herosInitial = JSON.parse(JSON.stringify(this.heros)) ;
     }
 
+    setArmes() : void {
+        this.armeService.getArmes()
+          .subscribe(armes => this.armes = armes)
+    }
+
     isHerosModifie() : boolean {
         return JSON.stringify(this.herosInitial) !== JSON.stringify(this.heros) ;
     }
@@ -78,6 +95,17 @@ export class EditionHerosComponent implements OnInit {
         return this.heros != undefined
             && (this.heros.points + this.heros.attaque + this.heros.degats + this.heros.esquive == 40)
             && (this.heros.points >= 1 && this.heros.attaque >= 1 && this.heros.degats >= 1 && this.heros.esquive >= 1) ;
+    }
+
+    isArmeDuHeros(arme : ArmeId) : boolean {
+        return this.heros?.idArme !== null && this.heros?.idArme === arme.id ;
+    }
+
+    setArmeDuHeros(event : Event) {
+        if (this.heros !== undefined && this.armes !== undefined) {
+            let nameOfSelectedWeapon = (event.target as HTMLSelectElement).value ;
+            this.heros.idArme = this.armes.filter(arme => arme.name == nameOfSelectedWeapon)[0].id ;
+        }
     }
 
     sauvegarde() : void {

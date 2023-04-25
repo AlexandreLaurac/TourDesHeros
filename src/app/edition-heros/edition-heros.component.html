@@ -53,6 +53,14 @@
         <div id="messageHerosInvalide"> Ce héros n'est pas conforme ! <br> Donnez-lui les bonnes caractéristiques </div>
     </div>
 
+    <!-- Partie arme associée au héros -->
+    <div id="partieArme">
+        <div> <span> Choisissez une arme pour ce héros : </span> </div>
+        <select (change)="setArmeDuHeros($event)">
+            <option *ngFor="let arme of armes" [selected]="isArmeDuHeros(arme)"> {{arme.name}} </option>
+        </select>
+    </div>
+
     <!-- Partie boutons -->
     <div id="partieBoutons">
         <button type="button" (click)="retour()"> Retour </button>
@@ -60,6 +68,5 @@
         <button *ngIf="!heros.original && !creation" type="button" (click)="suppression()"> Suppression </button>
         <p *ngIf="heros.original"> Vous ne pouvez pas supprimer ce héros </p>
     </div>
-
 
 </div>

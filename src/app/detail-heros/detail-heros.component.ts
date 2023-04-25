@@ -4,11 +4,11 @@ import { AppComponent } from "../app.component" ;
 import { HerosId } from "../heros" ;
 import { ArmeId } from "../arme" ;
 
+import { HerosService } from '../heros.service' ;
+import { ArmeService } from "../arme.service" ;
+
 import { ActivatedRoute } from '@angular/router' ;
 import { Location } from '@angular/common' ;
-
-import { HerosService } from '../heros.service' ;
-import { ArmeService } from "../arme.service";
 
 @Component({
     selector: 'app-detail-heros',
@@ -41,12 +41,9 @@ export class DetailHerosComponent implements OnInit {
     }
 
     setArmeDuHeros() : void {
-        if (this.heros?.idArme !== undefined) {
-            this.armeService.getArme(this.heros?.idArme)
-                .subscribe(arme => {
-                    this.arme = arme ;
-                }
-            )
+        if (this.heros !== undefined && this.heros.idArme !== null) {
+            this.armeService.getArme(this.heros.idArme)
+                .subscribe(arme => this.arme = arme)
         }
     }
 
@@ -81,24 +78,25 @@ export class DetailHerosComponent implements OnInit {
 
     choisirHeros() : void {
         if (this.heros != undefined) {
-            // Ce héros n'est pas le héros choisi...
+            // Ce héros n'est pas le héros choisi, on essaie de l'ajouter
             if (!this.isCeHerosLeHerosChoisi()) {
-                // ...On vérifie d'abord s'il a une arme
-                if (this.heros.idArme === undefined) { // il n'en a pas
+                // On vérifie d'abord s'il a une arme
+                if (this.heros.idArme === null) { // il n'en a pas
                     alert ("Vous devez d'abord attribuer une arme à ce héros pour le choisir. Rendez-vous dans la page d'édition pour cela.") ;
                 }
                 else {  // il en a une
                     AppComponent.herosChoisi = this.heros ;
+                    this.retour() ;
                 }
             }
             // Ce héros est déjà le héros choisi, on le retire
             else {
                 AppComponent.herosChoisi = undefined ;
+                this.retour() ;
             }
         }
         else {
             alert ('Une erreur est survenue, veuillez recommencer') ;
         }
-        this.retour() ;
     }
 }

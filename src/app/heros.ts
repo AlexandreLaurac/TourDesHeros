@@ -10,9 +10,8 @@ export interface Heros {
     attaque : number ;
     esquive : number ;
     degats : number ;
-    idArme : number | undefined
+    idArme : number | null
 }
-
 
 export interface HerosId extends Heros {
     id : number ;
@@ -32,9 +31,3 @@ export function herosIdToHeros (herosId : HerosId) : Heros {
         idArme:herosId.idArme
     } ;
 }
-
-/*
-export interface HerosJeu extends HerosId {  // ou 'extends Heros', à voir
-    arme : Arme | undefined ;
-}
-*/
