@@ -55,7 +55,7 @@
 
     <!-- Partie arme associée au héros -->
     <div id="partieArme">
-        <div> <span> Choisissez une arme pour ce héros : </span> </div>
+        <div> <span> Arme du héros : </span> </div>
         <select (change)="setArmeDuHeros($event)">
             <option [selected]="isArmeDuHeros(null)"> -- Sans arme -- </option>
             <option *ngFor="let arme of armes" [selected]="isArmeDuHeros(arme.id)"> {{arme.name}} </option>
