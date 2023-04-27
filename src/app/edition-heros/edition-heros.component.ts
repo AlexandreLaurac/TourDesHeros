@@ -16,10 +16,12 @@ import { Location } from '@angular/common' ;
 })
 export class EditionHerosComponent implements OnInit {
 
+    static SOMME_POINTS : number = 40 ;
     herosInitial : HerosId | undefined ;
     heros : HerosId | undefined ;
     armes : ArmeId[] | undefined ;
     creation = false ;
+    pointsRestants : number = EditionHerosComponent.SOMME_POINTS ;
 
     constructor(
         private route : ActivatedRoute,
@@ -90,10 +92,33 @@ export class EditionHerosComponent implements OnInit {
         return this.heros === undefined || this.heros.name.length === 0 ;
     }
 
+    calculPointsRestants() : void {
+        if (this.heros !== undefined) {
+            this.pointsRestants = EditionHerosComponent.SOMME_POINTS - (this.heros.points + this.heros.attaque + this.heros.degats + this.heros.esquive) ;
+        }
+    }
+
     arePointsValides() : boolean {
-        return this.heros != undefined
-            && (this.heros.points + this.heros.attaque + this.heros.degats + this.heros.esquive == 40)
-            && (this.heros.points >= 1 && this.heros.attaque >= 1 && this.heros.degats >= 1 && this.heros.esquive >= 1) ;
+        if (this.heros !== undefined) {
+            this.calculPointsRestants() ;
+            return (this.pointsRestants === 0)
+              && (this.heros.points >= 1 && this.heros.attaque >= 1 && this.heros.degats >= 1 && this.heros.esquive >= 1);
+        }
+        else {
+            return false ;
+        }
+    }
+
+    sommePointsInferieure() : boolean {
+        return this.pointsRestants > 0 ;
+    }
+
+    sommePointsSuperieure() : boolean {
+        return this.pointsRestants < 0 ;
+    }
+
+    pointsRestantsAbs() : number {
+        return Math.abs(this.pointsRestants) ;
     }
 
     isArmeDuHeros(armeId : number | null) : boolean {

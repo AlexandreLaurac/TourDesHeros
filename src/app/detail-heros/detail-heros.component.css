@@ -1,5 +1,42 @@
 /* HeroDetailComponent's private CSS styles */
 
+img {
+    width : 300px ;
+}
+
+a {
+    text-decoration : none ;
+    color : black ;
+}
+
+
+p {
+    margin : 0 ;
+}
+
+span {
+    color : #435960 ;
+    font-weight : bold ;
+}
+
+button {
+    padding : 1rem 0 ;
+    width : 150px ;
+    border-radius : 4px ;
+    background-color : #eee ;
+    font-size : 1rem ;
+}
+
+button:hover, a:hover {
+    background-color : #cfd8dc ;
+}
+
+button:disabled {
+    background-color : #eee ;
+    color : #ccc ;
+    cursor : auto ;
+}
+
 #detailHeros {
     border : 2px solid #369 ; /* peru */
     border-radius : 6px ;
@@ -17,10 +54,6 @@ span#herosChoisi {
     position : absolute ;
     width : 95px ;
     top : 5px ; right : 5px ;
-}
-
-img {
-    width : 300px ;
 }
 
 #sansImage {
@@ -53,15 +86,6 @@ img {
     align-items : center ;
     font-style: italic ;
     color : #435960 ;
-}
-
-p {
-    margin : 0 ;
-}
-
-span {
-    color : #435960 ;
-    font-weight : bold ;
 }
 
 #partiePoints {
@@ -105,7 +129,7 @@ span {
 }
 
 #reponseArmeExistante img {
-    margin-left : 5px ;
+    margin-left : 10px ;
     width : 50px ;
 }
 
@@ -114,24 +138,6 @@ span {
     color : #435960 ;
     font-style : italic ;
     font-size : 0.83em ;
-}
-
-button {
-    padding : 1rem 0 ;
-    width : 150px ;
-    border-radius : 4px ;
-    background-color : #eee ;
-    font-size : 1rem ;
-}
-
-button:hover, a:hover {
-    background-color : #cfd8dc ;
-}
-
-button:disabled {
-    background-color : #eee ;
-    color : #ccc ;
-    cursor : auto ;
 }
 
 #partieBoutons {
@@ -148,9 +154,3 @@ button:disabled {
     justify-content : center ;
     align-items : center ;
 }
-
-a {
-    text-decoration : none ;
-    color : black ;
-}
-

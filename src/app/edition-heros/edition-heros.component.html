@@ -34,7 +34,7 @@
         <div *ngIf="!creation && heros.original" id="description"> {{ heros.description }} </div>
     </div>
 
-    <!-- Partie description -->
+    <!-- Partie points -->
     <div id="partiePoints">
         <div id="conteneurTextes">
             <div> <span> Points de vie </span> </div>
@@ -43,14 +43,21 @@
             <div> <span> Points de dégâts </span> </div>
         </div>
         <div id="conteneurValeurs">
-            <input id="points-heros" type=number [(ngModel)]="heros.points" placeholder="points de vie" size="1">
-            <input id="attaque-heros" type=number [(ngModel)]="heros.attaque" placeholder="points d'attaque" size="1">
-            <input id="esquive-heros" type=number [(ngModel)]="heros.esquive" placeholder="points d'esquive" size="1">
-            <input id="degats-heros" type=number [(ngModel)]="heros.degats" placeholder="points de dégâts" size="1">
+            <input id="points-heros" type=number [(ngModel)]="heros.points" placeholder="points de vie" size="1" min="1" max="37">
+            <input id="attaque-heros" type=number [(ngModel)]="heros.attaque" placeholder="points d'attaque" size="1" min="1" max="37">
+            <input id="esquive-heros" type=number [(ngModel)]="heros.esquive" placeholder="points d'esquive" size="1" min="1" max="37">
+            <input id="degats-heros" type=number [(ngModel)]="heros.degats" placeholder="points de dégâts" size="1" min="1" max="37">
         </div>
     </div>
-    <div *ngIf="!arePointsValides()">
-        <div id="messageHerosInvalide"> Ce héros n'est pas conforme ! <br> Donnez-lui les bonnes caractéristiques </div>
+    <div id="messageHerosInvalide" *ngIf="!arePointsValides()">
+        <p> Ce héros n'est pas conforme ! </p>
+        <p> Donnez-lui les bonnes caractéristiques : </p>
+        <ul>
+            <li> chaque valeur de points doit être supérieure à 1 </li>
+            <li> la somme des points doit être égale à 40 </li>
+        </ul>
+        <p *ngIf="sommePointsInferieure()"> Vous devez répartir <span> {{ pointsRestantsAbs() }} </span> point(s) parmi tous les points </p>
+        <p *ngIf="sommePointsSuperieure()"> Vous devez retirer <span> {{ pointsRestantsAbs() }} </span> point(s) parmi tous les points </p>
     </div>
 
     <!-- Partie arme associée au héros -->

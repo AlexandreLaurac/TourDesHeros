@@ -1,5 +1,37 @@
 /* EditionHerosComponent's private CSS styles */
 
+img {
+    width : 300px ;
+}
+
+label, span {
+    color : #435960 ;
+    font-weight : bold ;
+}
+
+input {
+    font-size : 1em ;
+    padding : 0 ;
+}
+
+button {
+    padding : 1rem 0 ;
+    width : 150px ;
+    border-radius : 4px ;
+    background-color : #eee ;
+    font-size : 1rem ;
+}
+
+button:hover, a:hover {
+    background-color: #cfd8dc;
+}
+
+button:disabled {
+    background-color : #eee ;
+    color : #ccc ;
+    cursor : auto ;
+}
+
 #editionHeros {
     border : 2px solid #369 ; /* peru */
     border-radius : 6px ;
@@ -8,6 +40,7 @@
     align-items : center ;
     width : 30% ;
     margin : 30px auto 0 auto ;
+    position : relative ;
 }
 
 #partieTitre {
@@ -31,9 +64,6 @@
     color : #435960 ;
 }
 
-img {
-    width : 300px ;
-}
 
 #sansImage {
     width : 300px ;
@@ -82,14 +112,23 @@ img {
     margin-left : 10px ;
 }
 
-label, span {
-    color : #435960 ;
+#messageHerosInvalide {
+    color : red ;
     font-weight : bold ;
+    position : absolute ;
+    top : 440px ;
+    right : -460px ;
 }
 
-input {
-    font-size : 1em ;
-    padding : 0 ;
+#messageHerosInvalide p,
+#messageHerosInvalide ul {
+    margin : 0 ;
+}
+
+#messageHerosInvalide span {
+    color : forestgreen ;
+    font-weight : bold ;
+    font-size : 1.2em ;
 }
 
 #partieArme {
@@ -106,7 +145,6 @@ input {
     font-size : 0.8em ;
     /*background : #eee ;*/
     /*border-radius : 5px ;*/
-
 }
 
 #partieBoutons {
@@ -115,28 +153,4 @@ input {
 
 #partieBoutons p {
     margin-top : 10px ;
-}
-
-button {
-    padding : 1rem 0 ;
-    width : 150px ;
-    border-radius : 4px ;
-    background-color : #eee ;
-    font-size : 1rem ;
-}
-
-button:hover, a:hover {
-    background-color: #cfd8dc;
-}
-
-button:disabled {
-    background-color : #eee ;
-    color : #ccc ;
-    cursor : auto ;
-}
-
-#messageHerosInvalide {
-    color : red ;
-    font-weight : bold ;
-    padding-bottom : 1em ;
 }
