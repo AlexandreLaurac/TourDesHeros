@@ -27,9 +27,9 @@
     <!-- Partie description -->
     <div id="partieDescription">
         <!-- Création d'une arme (on peut forcément modifier sa description) -->
-        <textarea *ngIf="creation" [(ngModel)]="arme.description" cols="35" rows="4" placeholder="Donnez une description à votre arme (facultatif)"> </textarea>
+        <textarea *ngIf="creation" [(ngModel)]="arme.description" cols="35" rows="2" placeholder="Donnez une description à votre arme (facultatif)"> </textarea>
         <!-- Edition d'une arme précédemment créée (on peut modifier son nom) -->
-        <textarea *ngIf="!creation && !arme.originale" [(ngModel)]="arme.description" cols="35" rows="4" placeholder="Donnez une description à votre arme (facultatif)"> </textarea>
+        <textarea *ngIf="!creation && !arme.originale" [(ngModel)]="arme.description" cols="35" rows="2" placeholder="Donnez une description à votre arme (facultatif)"> </textarea>
         <!-- Edition d'un héros original (on ne peut pas modifier sa description) -->
         <div *ngIf="!creation && arme.originale" id="description"> {{ arme.description }} </div>
     </div>

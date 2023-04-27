@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core' ;
 
 import { Arme, ArmeId, armeIdToArme } from "./arme" ;
 import { MessageService } from "./message.service" ;
-import { AngularFirestore } from "@angular/fire/compat/firestore";
-import { map, Observable } from "rxjs";
+
+import { map, Observable } from "rxjs" ;
+import { AngularFirestore } from "@angular/fire/compat/firestore" ;
 
 @Injectable({
     providedIn: 'root'
@@ -11,11 +12,8 @@ import { map, Observable } from "rxjs";
 export class ArmeService {
 
     private static url : string = 'Armes' ;
-    //private collectionDesArmes : AngularFirestoreCollection<Armes> | undefined ;
 
-    constructor (private messageService : MessageService, private afs : AngularFirestore) {
-        //this.collectionDesArmes = this.afs.collection(ArmeService.url) ;
-    }
+    constructor (private messageService : MessageService, private afs : AngularFirestore) {}
 
     createArme (armeId : ArmeId) : Promise<void> {
         let documentArme = this.afs.collection<Arme>(ArmeService.url).doc(armeId.id.toString()) ;
@@ -26,9 +24,9 @@ export class ArmeService {
         let collectionDesArmes = this.afs.collection<Arme>(ArmeService.url) ;
         let armes : Observable<ArmeId[]> = collectionDesArmes.snapshotChanges().pipe(
             map(actions => actions.map(a => {
-              const data : Arme = a.payload.doc.data() as Arme ;
-              const id : number = Number(a.payload.doc.id) ;
-              return {id, ...data} ;
+                const data : Arme = a.payload.doc.data() as Arme ;
+                const id : number = Number(a.payload.doc.id) ;
+                return {id, ...data} ;
             }))
         ) ;
         this.messageService.add('ArmeService : armes reçues') ;
@@ -42,7 +40,7 @@ export class ArmeService {
                 const data : Arme = action.payload.data() as Arme ;
                 const id : number = Number(action.payload.id) ;
                 return {id, ...data} ;
-              })) ;
+            })) ;
         this.messageService.add(`ArmeService: reçu arme id=${id}`) ;
         return arme ;
     }

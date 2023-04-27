@@ -34,12 +34,12 @@ button:disabled {
 
 #editionArme {
     border : 2px solid #369 ; /* peru */
-    border-radius : 6px ;
+    border-radius : 10px ;
     display : flex ;
     flex-direction : column ;
     align-items : center ;
     width : 30% ;
-    margin : 50px auto 0 auto ;
+    margin : 30px auto 0 auto ;
     position : relative ;
 }
 
@@ -76,9 +76,13 @@ button:disabled {
     color : #435960 ;
 }
 
+#partieDescription {
+    margin : 20px 0 10px 0 ;
+}
+
 #description {
     --marge : 70px ;
-    margin : 30px var(--marge) 0 var(--marge) ;
+    margin : 0 var(--marge) 0 var(--marge) ;
     font-size: 1.1em;
     text-align: justify;
     font-family : Helvetica, sans-serif ;
@@ -86,13 +90,13 @@ button:disabled {
 
 #partieDescription textarea {
     --marge : 70px ;
-    margin : 25px var(--marge) 0 var(--marge) ;
+    margin : 0 var(--marge) 0 var(--marge) ;
     font-size: 1.1em;
     font-family : Helvetica, sans-serif ;
 }
 
 #partiePoints {
-    margin : 20px 20px 10px 10px ;
+    margin : 10px 20px 10px 16px ;
     display : flex ;
     font-size : 1.2em ;
 }
@@ -111,11 +115,11 @@ button:disabled {
 }
 
 #partieBoutons {
-    margin : 10px 0 ;
+    margin : 10px 0 20px 0 ;
 }
 
 #partieBoutons p {
-    margin-top : 10px ;
+    margin-top : 20px ;
 }
 
 #messageArmeInvalide {

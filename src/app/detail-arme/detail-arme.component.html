@@ -17,7 +17,7 @@
     </div>
 
     <!-- Partie description -->
-    <div>
+    <div id="partieDescription">
         <!-- L'arme a une description -->
         <div *ngIf="arme.description" id="description"> {{ arme.description }} </div>
         <!-- L'arme n'a pas de description -->
@@ -42,12 +42,9 @@
             <div> {{ arme.degats }} </div>
         </div>
     </div>
-    <div *ngIf="!isArmeValide()">
-        <div id="invalide"> Cette arme n'est pas conforme ! <br> Editez ses caractéristiques dans la page d'édition </div>
-    </div>
 
     <!-- Partie boutons -->
-    <div>
+    <div id="partieBoutons">
         <button type="button" (click)="goBack()"> Retour </button>
         <button> <a routerLink="/editionArme/{{arme.id}}"> Editer l'arme </a> </button>
     </div>

@@ -1,17 +1,49 @@
 /* HeroDetailComponent's private CSS styles */
 
+img {
+    width : 250px ;
+}
+
+a {
+    text-decoration : none ;
+    color : black ;
+}
+
+p {
+    margin : 0 ;
+}
+
+span {
+    color : #435960 ;
+    font-weight : bold ;
+}
+
+button {
+    padding : 1rem 0 ;
+    width : 150px ;
+    border-radius : 4px ;
+    background-color : #eee ;
+    font-size : 1rem ;
+}
+
+button:hover, a:hover {
+    background-color : #cfd8dc ;
+}
+
+button:disabled {
+    background-color : #eee ;
+    color : #ccc ;
+    cursor : auto ;
+}
+
 #detailArme {
-    border : 2px solid #369 ; /* peru */
-    border-radius : 6px ;
+    border : 2px solid #369 ;
+    border-radius : 10px ;
     display : flex ;
     flex-direction : column ;
     align-items : center ;
     width : 30% ;
-    margin : 50px auto 0 auto ;
-}
-
-img {
-    width : 250px ;
+    margin : 30px auto 0 auto ;
 }
 
 #sansImage {
@@ -24,21 +56,23 @@ img {
     justify-content : center ;
     align-items : center ;
     font-style: italic ;
-    font-size: 0.8em ;
+    font-size: 0.95em ;
     color : #435960 ;
+}
+
+#partieDescription {
+    margin : 20px 0 10px 0 ;
 }
 
 #description {
     --marge : 70px ;
-    margin : 30px var(--marge) 8px var(--marge) ;
+    margin : 0 var(--marge) 0 var(--marge) ;
     font-size: 1.1em;
     text-align: justify;
     font-family : Helvetica, sans-serif ;
 }
 
 #descriptionVide {
-    margin-top : 30px ;
-    margin-bottom : 0 ;
     display : flex ;
     flex-direction : column ;
     justify-content : start ;
@@ -47,17 +81,8 @@ img {
     color : #435960 ;
 }
 
-p {
-    margin : 0 ;
-}
-
-span {
-    color : #435960 ;
-    font-weight : bold ;
-}
-
 #partiePoints {
-    margin : 20px 60px 10px 0 ;
+    margin : 10px 60px 10px 0 ;
     display : flex ;
     font-size : 1.2em ;
 }
@@ -75,33 +100,9 @@ span {
     margin-left : 5px ;
 }
 
-#invalide {
-    color : red ;
-    font-weight : bold ;
-    text-align : center ;
+#partieBoutons {
+    margin : 10px 0 30px 0 ;
+    display : flex ;
+    flex-direction : row ;
+    align-items : center ;
 }
-
-button {
-    padding : 1rem 0;
-    margin : 10px 0 40px 0 ;
-    width : 150px ;
-    border-radius : 4px ;
-    background-color : #eee ;
-    font-size : 1rem ;
-}
-
-a {
-    text-decoration : none ;
-    color : black ;
-}
-
-button:hover, a:hover {
-    background-color : #cfd8dc ;
-}
-
-button:disabled {
-    background-color : #eee ;
-    color : #ccc ;
-    cursor : auto ;
-}
-

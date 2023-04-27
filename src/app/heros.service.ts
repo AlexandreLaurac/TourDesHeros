@@ -4,20 +4,16 @@ import { Heros, HerosId, herosIdToHeros } from "./heros" ;
 import { MessageService } from "./message.service" ;
 
 import { map, Observable } from "rxjs" ;
-import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore" ;
+import { AngularFirestore } from "@angular/fire/compat/firestore" ;
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class HerosService {
 
     private static url : string = 'LesHeros' ;
 
-    //private collectionDesHeros : AngularFirestoreCollection<Heros> | undefined ;
-
-    constructor(private messageService : MessageService, private afs : AngularFirestore) {
-        //this.collectionDesHeros = this.afs.collection(HerosService.url) ;
-    }
+    constructor(private messageService : MessageService, private afs : AngularFirestore) {}
 
     createHeros(herosId : HerosId) : Promise<void> {
         let documentDeHeros = this.afs.collection<Heros>(HerosService.url).doc(herosId.id.toString()) ;
