@@ -108,10 +108,6 @@ export class EditionArmeComponent implements OnInit {
         return this.sommePoints < 0 ;
     }
 
-    pointsRestantsAbs() : number {
-        return Math.abs(this.sommePoints) ;
-    }
-
     sauvegarde() : void {
         if (this.arme != undefined) {
 

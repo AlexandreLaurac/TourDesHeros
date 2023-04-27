@@ -117,10 +117,6 @@ export class EditionHerosComponent implements OnInit {
         return this.pointsRestants < 0 ;
     }
 
-    pointsRestantsAbs() : number {
-        return Math.abs(this.pointsRestants) ;
-    }
-
     isArmeDuHeros(armeId : number | null) : boolean {
         return this.heros?.idArme === armeId ;
     }

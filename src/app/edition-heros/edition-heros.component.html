@@ -56,8 +56,8 @@
             <li> chaque valeur de points doit être supérieure à 1 </li>
             <li> la somme des points doit être égale à 40 </li>
         </ul>
-        <p *ngIf="sommePointsInferieure()"> Vous devez répartir <span> {{ pointsRestantsAbs() }} </span> point(s) parmi tous les points </p>
-        <p *ngIf="sommePointsSuperieure()"> Vous devez retirer <span> {{ pointsRestantsAbs() }} </span> point(s) parmi tous les points </p>
+        <p *ngIf="sommePointsInferieure()"> Vous devez répartir <span> {{ pointsRestants | absoluteValue }} </span> point(s) parmi tous les points </p>
+        <p *ngIf="sommePointsSuperieure()"> Vous devez retirer <span> {{ pointsRestants | absoluteValue }} </span> point(s) parmi tous les points </p>
     </div>
     <div id="messageHerosValide" *ngIf="arePointsValides()">
         <p> Ce héros est conforme, bravo ! </p>

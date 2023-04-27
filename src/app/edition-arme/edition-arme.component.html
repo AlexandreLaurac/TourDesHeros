@@ -56,8 +56,8 @@
             <li> chaque valeur de points doit être comprise entre -5 et 5 </li>
             <li> la somme des points doit être égale à 0 </li>
         </ul>
-        <p *ngIf="sommePointsSuperieureAZero()"> Vous devez retirer <span> {{ pointsRestantsAbs() }} </span> point(s) parmi tous les points </p>
-        <p *ngIf="sommePointsInferieureAZero()"> Vous devez ajouter <span> {{ pointsRestantsAbs() }} </span> point(s) parmi tous les points </p>
+        <p *ngIf="sommePointsSuperieureAZero()"> Vous devez retirer <span> {{ sommePoints | absoluteValue }} </span> point(s) parmi tous les points </p>
+        <p *ngIf="sommePointsInferieureAZero()"> Vous devez ajouter <span> {{ sommePoints | absoluteValue }} </span> point(s) parmi tous les points </p>
     </div>
     <div id="messageArmeValide" *ngIf="arePointsValides()">
         <p> Cette arme est conforme, bravo ! </p>

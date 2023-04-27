@@ -13,6 +13,8 @@ import { ArmesComponent } from './armes/armes.component';
 import { DetailArmeComponent } from './detail-arme/detail-arme.component';
 import { EditionArmeComponent } from './edition-arme/edition-arme.component';
 
+import { AbsoluteValuePipe } from "./absolute-value.pipe" ;
+
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
@@ -30,6 +32,7 @@ import { FIREBASE_OPTIONS } from "@angular/fire/compat";
         ArmesComponent,
         DetailArmeComponent,
         EditionArmeComponent,
+        AbsoluteValuePipe
     ],
     imports: [
         BrowserModule,
