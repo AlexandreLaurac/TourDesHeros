@@ -50,7 +50,7 @@ button a {
     margin : 20px auto ;
     list-style-type : none ;
     padding : 0 ;
-    width : 15em ;
+    width : 16em ;
 }
 
 .armes li {
@@ -101,8 +101,8 @@ button a {
 }
 
 .armes img {
-    width : 30px ;
+    width : 50px ;
     position : absolute ;
-    top : 2px ;
-    right : 0 ;
+    top : 0 ;
+    right : -8px ;
 }

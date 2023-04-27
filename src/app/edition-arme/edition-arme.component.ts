@@ -42,16 +42,16 @@ export class EditionArmeComponent implements OnInit {
                     let tableauIdArmes = armes.map(arme => arme.id) ;
                     let idMaxArmes = Math.max(...tableauIdArmes) ;
                     this.arme = {
-                        id: idMaxArmes+1,
-                        name: "",
-                        originale: false,
-                        description: "",
-                        points: 0,
-                        attaque: 0,
-                        esquive: 0,
-                        degats: 0,
-                        image: "",
-                        icone: ""
+                        id:idMaxArmes+1,
+                        name:"",
+                        originale:false,
+                        description:"",
+                        points:-5,
+                        attaque:-5,
+                        esquive:-5,
+                        degats:-5,
+                        image:"",
+                        icone:""
                       } ;
                       this.copieArmeInitiale() ;
                 })
