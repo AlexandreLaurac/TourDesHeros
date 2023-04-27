@@ -1,20 +1,61 @@
 /* HeroesComponent's private CSS styles */
 
 h1 {
-    margin : 30px 0 20px 0 ;
+    margin : 20px 0 ;
     text-align : center ;
 }
 
+button {
+    display : block ;
+    margin : 30px auto 0 ;
+    padding : 1rem ;
+    border-radius : 4px ;
+    background-color : #eee ;
+    font-size : 1rem ;
+}
+
+button a {
+    text-decoration : none ;
+    color : black ;
+}
+
 p#messageIntroduction {
-    margin : 0 auto 30px 0 ;
+    margin : 20px 0 30px 0 ;
     text-align : center ;
     font-size : 16px ;
     font-style: italic ;
     color : #435960 ;
 }
 
+#boutonsTri {
+    margin : 30px 0 ;
+    display : flex ;
+    flex-direction : row ;
+    justify-content : center ;
+}
+
+#boutonsTri button
+{
+    width : 230px ;
+    margin : 0 10px ;
+    padding : 1rem ;
+    color : #3d3d3d ;
+    background-color : #EEE ;
+    border-radius : 4px ;
+    border : none ;
+}
+
+#boutonsTri button:hover {
+    color : white ;
+    background-color : #405061 ;
+}
+
+#boutonsTri button:active {
+    background-color : black ;
+}
+
 .heroes {
-    margin : 0 auto ;
+    margin : 20px auto ;
     list-style-type : none ;
     padding : 0 ;
     width : 15em ;
@@ -26,7 +67,7 @@ p#messageIntroduction {
 }
 
 .heroes li:hover {
-  left : .1em ;
+    left : .1em ;
 }
 
 .heroes a {
@@ -52,19 +93,19 @@ p#messageIntroduction {
 }
 
 .heroes .badge {
-    display: inline-block;
-    font-size: small;
-    color: white;
-    background-color: #405061;
-    padding: 0.8em 0.7em 0.8em 0.7em;
-    margin-right: .8em;
-    line-height: 1em;
-    position: relative;
-    left: -1px;
-    top: -4px;
-    min-width: 16px;
+    display : inline-block ;
+    font-size : small ;
+    color : white ;
+    background-color : #405061 ;
+    padding : 0.8em 0.7em 0.8em 0.7em ;
+    margin-right : .8em ;
+    line-height : 1em ;
+    position : relative ;
+    left : -1px ;
+    top : -4px ;
+    min-width : 16px ;
     text-align : center ;
-    border-radius: 4px 0 0 4px;
+    border-radius : 4px 0 0 4px ;
 }
 
 .heroes .herosChoisi {
@@ -72,7 +113,7 @@ p#messageIntroduction {
     font-size : 1.5em ;
     font-weight : bold ;
     position : absolute ;
-    top : 0px ;
+    top : 0 ;
     right : -190px ;
 }
 
@@ -82,26 +123,3 @@ p#messageIntroduction {
     top : 2px ;
     right : 0 ;
 }
-
-button {
-    display : block ;
-    margin : 30px auto 0 ;
-    padding : 1rem ;
-    border-radius : 4px ;
-    background-color : #eee ;
-    font-size : 1rem ;
-}
-
-button a {
-    text-decoration : none ;
-    color : black ;
-}
-
-/*
-C'est presque ça pour les images, mais pas encore exactement.
-- Il faudrait sortir l'icône de la partie grisée (tout en la gardant dans l'élément a)
-- et revoir éventuellement la taille des li de la liste... c'est petit, là
-
-Enfin, revoir la taille des icones, pose un pb (leur donner à peu près les mêmes dimensions à toutes)
-
-*/

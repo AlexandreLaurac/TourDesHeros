@@ -1,10 +1,16 @@
 <h1> Armes du jeu </h1>
+
+<div id="boutonsTri">
+    <button (click)="triParNumero()"> Trier les armes par numéro </button>
+    <button (click)="triParNom()"> Trier les armes par nom </button>
+    <button (click)="triParPoints()"> Trier les armes par points </button>
+</div>
+
 <ul class="armes">
     <li *ngFor="let arme of armes">
         <a routerLink="/detailArme/{{arme.id}}">
             <span class="badge"> {{arme.id}} </span>
             {{arme.name}}
-            <!-- <img src="data:image/png;base64, {{arme.icone}}" alt=""/> -->
         </a>
     </li>
 </ul>

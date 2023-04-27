@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core' ;
 
 import { HerosId } from "../heros" ;
+import { comparaisonParNumero, comparaisonParNom, comparaisonParPoints } from "../heros" ;
+
 import { HerosService } from "../heros.service" ;
 import { AppComponent } from "../app.component" ;
 
@@ -23,7 +25,10 @@ export class HerosComponent implements OnInit {
 
     setLesHeros() : void {
         this.herosService.getLesHeros()
-            .subscribe(heros => this.lesHeros = heros) ;
+            .subscribe(heros => {
+                this.lesHeros = heros ;
+                this.triParNumero() ;  // Par défaut, on affiche les héros triés par numéro (nécessaire car l'ordre obtenu de la base de données est un ordre lexicographique sur les id, donc par exemple 10 arrive après 1 et avant 2)
+            }) ;
     }
 
     messageIntroduction() : string {
@@ -39,5 +44,17 @@ export class HerosComponent implements OnInit {
 
     isCeHerosLeHerosChoisi(heros : HerosId) : boolean {
         return JSON.stringify(heros) === JSON.stringify(this.herosChoisi) ;
+    }
+
+    triParNumero() : void {
+        this.lesHeros.sort(comparaisonParNumero) ;
+    }
+
+    triParNom() : void {
+        this.lesHeros.sort(comparaisonParNom) ;
+    }
+
+    triParPoints() : void {
+        this.lesHeros.sort(comparaisonParPoints) ;
     }
 }

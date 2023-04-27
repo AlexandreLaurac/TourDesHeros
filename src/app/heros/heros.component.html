@@ -2,11 +2,17 @@
 
 <p id="messageIntroduction"> {{ messageIntroduction() }} </p>
 
+<div id="boutonsTri">
+    <button (click)="triParNumero()"> Trier les héros par numéro </button>
+    <button (click)="triParNom()"> Trier les héros par nom </button>
+    <button (click)="triParPoints()"> Trier les héros par points </button>
+</div>
+
 <ul class="heroes">
     <li *ngFor="let heros of lesHeros">
         <a routerLink="/detail/{{heros.id}}">
             <span class="badge"> {{heros.id}} </span>
-            {{heros.name}}
+            {{ heros.name }}
             <img src="data:image/png;base64, {{heros.icone}}" alt=""/>
         </a>
         <span *ngIf="isCeHerosLeHerosChoisi(heros)" class="herosChoisi"> Héros choisi ! </span>

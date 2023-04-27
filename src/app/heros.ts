@@ -1,5 +1,3 @@
-//import { Arme } from "./arme" ;
-
 export interface Heros {
     name : string ;
     original : boolean ;  // booléen indiquant si le héros est fourni par le site ou a été créé par l'utilisateur
@@ -30,4 +28,16 @@ export function herosIdToHeros (herosId : HerosId) : Heros {
         degats:herosId.degats,
         idArme:herosId.idArme
     } ;
+}
+
+export function comparaisonParNumero (a : HerosId, b : HerosId) : number {
+    return a.id - b.id ;
+}
+
+export function comparaisonParNom (a : HerosId, b : HerosId) : number {
+    return (a.name).localeCompare(b.name) ;
+}
+
+export function comparaisonParPoints (a : HerosId, b : HerosId) : number {
+    return a.points - b.points ;
 }

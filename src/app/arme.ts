@@ -1,5 +1,3 @@
-import { Heros } from "./heros" ;
-
 export interface Arme {
     name : string ;
     originale : boolean ;
@@ -16,10 +14,6 @@ export interface ArmeId extends Arme {
     id : number ;
 }
 
-export interface ArmeJeu extends Arme {
-    heros : Heros | undefined ;
-}
-
 export function armeIdToArme (armeId : ArmeId) : Arme {
     return {
         name:armeId.name,
@@ -32,4 +26,16 @@ export function armeIdToArme (armeId : ArmeId) : Arme {
         esquive:armeId.esquive,
         degats:armeId.degats
     } ;
+}
+
+export function comparaisonParNumero (a : ArmeId, b : ArmeId) : number {
+    return a.id - b.id ;
+}
+
+export function comparaisonParNom (a : ArmeId, b : ArmeId) : number {
+    return (a.name).localeCompare(b.name) ;
+}
+
+export function comparaisonParPoints (a : ArmeId, b : ArmeId) : number {
+    return a.points - b.points ;
 }
