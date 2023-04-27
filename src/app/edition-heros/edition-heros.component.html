@@ -59,6 +59,9 @@
         <p *ngIf="sommePointsInferieure()"> Vous devez répartir <span> {{ pointsRestantsAbs() }} </span> point(s) parmi tous les points </p>
         <p *ngIf="sommePointsSuperieure()"> Vous devez retirer <span> {{ pointsRestantsAbs() }} </span> point(s) parmi tous les points </p>
     </div>
+    <div id="messageHerosValide" *ngIf="arePointsValides()">
+        <p> Ce héros est conforme, bravo ! </p>
+    </div>
 
     <!-- Partie arme associée au héros -->
     <div id="partieArme">

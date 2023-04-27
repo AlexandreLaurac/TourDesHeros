@@ -131,6 +131,15 @@ button:disabled {
     font-size : 1.2em ;
 }
 
+#messageHerosValide {
+    color : forestgreen ;
+    font-weight : bold ;
+    font-size : 1.2em ;
+    position : absolute ;
+    top : 442px ;
+    right : -320px ;
+}
+
 #partieArme {
     font-size : 1.2em ;
     margin : 10px 0 20px 0 ;
