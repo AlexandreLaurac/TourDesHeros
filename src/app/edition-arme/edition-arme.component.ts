@@ -16,6 +16,7 @@ export class EditionArmeComponent implements OnInit {
     armeInitiale : ArmeId | undefined ;
     arme : ArmeId | undefined ;
     creation = false ;
+    sommePoints : number = 0 ;
 
     constructor(
         private route : ActivatedRoute,
@@ -78,14 +79,37 @@ export class EditionArmeComponent implements OnInit {
         return this.arme === undefined || this.arme.name.length === 0 ;
     }
 
+    calculSommePoints() : void {
+        if (this.arme !== undefined) {
+            this.sommePoints = this.arme.points + this.arme.attaque + this.arme.degats + this.arme.esquive ;
+        }
+    }
+
     arePointsValides() : boolean {
-        return this.arme !== undefined
-            && (this.arme.points + this.arme.attaque + this.arme.degats + this.arme.esquive === 0)
-            && (this.isPointValide(this.arme.points) && this.isPointValide(this.arme.attaque) && this.isPointValide(this.arme.degats) && this.isPointValide(this.arme.esquive)) ;
+        if (this.arme !== undefined) {
+            this.calculSommePoints() ;
+            return this.sommePoints === 0
+                && (this.isPointValide(this.arme.points) && this.isPointValide(this.arme.attaque) && this.isPointValide(this.arme.degats) && this.isPointValide(this.arme.esquive)) ;
+        }
+        else {
+            return false ;
+        }
     }
 
     isPointValide(point : number) : boolean {
         return point >= -5 && point <= 5 ;
+    }
+
+    sommePointsSuperieureAZero() : boolean {
+        return this.sommePoints > 0 ;
+    }
+
+    sommePointsInferieureAZero() : boolean {
+        return this.sommePoints < 0 ;
+    }
+
+    pointsRestantsAbs() : number {
+        return Math.abs(this.sommePoints) ;
     }
 
     sauvegarde() : void {

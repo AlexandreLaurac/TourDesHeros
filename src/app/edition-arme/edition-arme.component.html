@@ -34,7 +34,7 @@
         <div *ngIf="!creation && arme.originale" id="description"> {{ arme.description }} </div>
     </div>
 
-    <!-- Partie description -->
+    <!-- Partie points -->
     <div id="partiePoints">
         <div id="conteneurTextes">
             <div> <span> Points de vie </span> </div>
@@ -43,17 +43,28 @@
             <div> <span> Points de dégâts </span> </div>
         </div>
         <div id="conteneurValeurs">
-            <input id="points-heros" type=number [(ngModel)]="arme.points" placeholder="points de vie" size="1">
-            <input id="attaque-heros" type=number [(ngModel)]="arme.attaque" placeholder="points d'attaque" size="1">
-            <input id="esquive-heros" type=number [(ngModel)]="arme.esquive" placeholder="points d'esquive" size="1">
-            <input id="degats-heros" type=number [(ngModel)]="arme.degats" placeholder="points de dégâts" size="1">
+            <input id="points-heros" type=number [(ngModel)]="arme.points" placeholder="points de vie" size="1" min="-5" max="5">
+            <input id="attaque-heros" type=number [(ngModel)]="arme.attaque" placeholder="points d'attaque" size="1" min="-5" max="5">
+            <input id="esquive-heros" type=number [(ngModel)]="arme.esquive" placeholder="points d'esquive" size="1" min="-5" max="5">
+            <input id="degats-heros" type=number [(ngModel)]="arme.degats" placeholder="points de dégâts" size="1" min="-5" max="5">
         </div>
     </div>
-    <div *ngIf="!arePointsValides()">
-        <div id="messageArmeInvalide"> Cette arme n'est pas conforme ! <br> Donnez-lui les bonnes caractéristiques </div>
+    <div id="messageArmeInvalide" *ngIf="!arePointsValides()">
+        <p> Cette arme n'est pas conforme ! </p>
+        <p> Donnez-lui les bonnes caractéristiques : </p>
+        <ul>
+            <li> chaque valeur de points doit être comprise entre -5 et 5 </li>
+            <li> la somme des points doit être égale à 0 </li>
+        </ul>
+        <p *ngIf="sommePointsSuperieureAZero()"> Vous devez retirer <span> {{ pointsRestantsAbs() }} </span> point(s) parmi tous les points </p>
+        <p *ngIf="sommePointsInferieureAZero()"> Vous devez ajouter <span> {{ pointsRestantsAbs() }} </span> point(s) parmi tous les points </p>
+    </div>
+    <div id="messageArmeValide" *ngIf="arePointsValides()">
+        <p> Cette arme est conforme, bravo ! </p>
     </div>
 
-    <!-- Partie boutons -->
+
+  <!-- Partie boutons -->
     <div id="partieBoutons">
         <button type="button" (click)="retour()"> Retour </button>
         <button type="button" (click)="sauvegarde()"> Sauvegarde </button>
