@@ -1,27 +1,19 @@
-# Projet
+# Le Tour des Héros
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.6.
+Application web Angular étendant l'application "Tour of Heroes" du site officiel. L'application constitue la phase de configuration d'un héros et de son arme pour un jeu qui serait à développer.
+Elle propose :
+- une page dite "Tableau de Bord" affichant les 5 meilleurs héros
+- une page "Héros" contenant la liste des héros disponibles avec possibilité de tri selon trois critères
+- les pages de création, de consultation et d'édition d'un héros (les deux premières accessibles depuis la page "Héros" précédente, la dernière accessible depuis la page de consultation d'un héros)
+- une page "Armes" contenant la liste des armes disponibles
+- les pages de création, de consultation et d'édition d'une arme  
 
-## Development server
+Les données de l'application sont stockées sur FireStore.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Projet réalisé de fin février à avril 2023 dans le cadre du module "Applications Client Riche" de la licence professionnelle Applications Web.
 
-## Code scaffolding
+Voir l'énoncé et le rapport rendu pour plus de détails.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Consultation
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Lancer `ng serve` puis se rendre sur `http://localhost:4200/
